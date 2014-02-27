@@ -12,13 +12,6 @@
  * "http://www.cecill.info".
  *
  ##########################################################################
- This class needs the followed files :
- - for the right menu
- - js/wdContextMenu/wdContextMenu/src/Plugins/jquery.contextmenu.js
- - css/wdContextMenu/css/contextmenu.css
- - for the colorpicker
- - js/farbtastic/farbtastic.js
-
  Parameters :
  - imagesToInsertInExport :
  - displayBackground : boolean to indicates if we add a background to the images (for transparents images by example). Use of exportFooter style in css.
@@ -35,7 +28,7 @@ var Woodpecker = Class.create( {
         this.containerId = parameters.containerId;
         this.container = $( "#" + this.containerId );
         this.data = parameters.data ? parameters.data : false;
-        this.displayPlot = !parameters.displayPlot;
+//        this.displayPlot = !parameters.displayPlot;
         this.toolsContainer = parameters.toolsContainer ? parameters.toolsContainer : "body";
         this.displayContextualMenu = parameters.displayContextualMenu;
         this.displayIconsMenu = parameters.displayIconsMenu;
@@ -498,8 +491,8 @@ var Woodpecker = Class.create( {
 // **************************************************************
     addOrUpdateLinesAndPoints: function()
     {
-        if( !this.displayPlot )
-            return;
+//        if( !this.displayPlot )
+//            return;
 
         var dotRadius = this.dotRadius;
         if( !this.displayPoints )
@@ -657,8 +650,8 @@ var Woodpecker = Class.create( {
 // **************************************************************
     createOrUpdateLegend : function()
     {
-        if( !this.displayPlot )
-            return;
+//        if( !this.displayPlot )
+//            return;
 
         var isTwoColumns = 10 < this.data.length;
         var gLegends = d3.select( 'g.legends' ).attr( 'transform', 'translate(' + (this.translateGraph.left + 15) + ',' + (this.plotSize.height + this.translateGraph.top + 45) + ')' );

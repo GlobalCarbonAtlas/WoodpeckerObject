@@ -1,0 +1,113 @@
+<HTML>
+<HEAD>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>GCA Time Series examples</title>
+    <link rel="icon" href="img/globe.png" type="image/png">
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="examples/styles.css">
+
+    <!--<script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>-->
+</HEAD>
+
+<BODY>
+
+
+<div class="container">
+
+    <div class="page-header title">
+        <h1 style="float:left;">Woodpecker API</h1>
+
+        <div id="link">
+            <a target="_blank" href="https://github.com/GlobalCarbonAtlas/WoodpeckerObject"><img class="git-icon" src="examples/GitHub-64px.png"></a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="page-header sub row">
+        <h2>Files
+            <small>(this class needs the followed files)</small>
+        </h2>
+        <div class="col-md-6">
+            <ul>
+                <li>jquery and javascript librairies
+                    <ul>
+                        <li>Woodpecker/js_library/jquery-1.9.1.js</li>
+                        <li>Woodpecker/js_library/jquery.class.js</li>
+                        <li>Woodpecker/js_library/jquery-ui-1.10.2.custom.min.js</li>
+                        <li>Woodpecker/js_library/jshashtable-2.1.js</li>
+                    </ul>
+                </li>
+                <li>d3.js
+                    <ul>
+                        <li>Woodpecker/d3.css</li>
+                        <li>Woodpecker/d3.v3/d3.v3.js</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <ul>
+                <li>for the contextual menu (click right)
+                    <ul>
+                        <li>Woodpecker/contextmenu.css</li>
+                        <li>Woodpecker/contextmenu.js</li>
+                    </ul>
+                </li>
+                <li>for the colorpicker (click on a color circle in the legend or a line)
+                    <ul>
+                        <li>Woodpecker/farbtastic/farbtastic.css</li>
+                        <li>Woodpecker/farbtastic/farbtastic.js</li>
+                    </ul>
+                </li>
+                <li>for the tree interpolation (click on the interpolation icon)
+                    <ul>
+                        <li>Woodpecker/Tree.css</li>
+                        <li>Woodpecker/Tree.js</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="page-header sub">
+        <h2>Parameters</h2>
+        <ul>
+            <li><span class="parameter">containerId :</span> identifier of the div containing the graph <span class="comment">(mandatory)</span></li>
+            <li><span class="parameter">data :</span> data to display <span class="default">(default value = false)</span></li>
+            <li><span class="parameter">toolsContainer :</span> container div for the tools like colorPicker, the interpolation, the axis and the exports <span class="default">(default value = "body")</span>
+            </li>
+            <li><span class="parameter">displayContextualMenu :</span> boolean to display the contextual menu <span class="default">(default value = false)</span></li>
+            <li><span class="parameter">displayIconsMenu :</span> boolean to display the icons menu <span class="default">(default value = false)</span></li>
+            <li><span class="parameter">displayPoints :</span> boolean to display points <span class="default">(default value = false)</span></li>
+            <li><span class="parameter">imagesToInsertInExport :</span> boolean to insert images (as logo by example) in the exports <span
+                    class="default">(default value = false)</span></li>
+            <li><span class="parameter">imgPath :</span> path for images to be inserted in the exports <span class="default">(default value = "Woodpecker/img")</span></li>
+            <li><span class="parameter">activeKeys :</span> boolean to activate keys (X and Y) to zoom with keyboard <span class="default">(default value = false)</span></li>
+            <li><span class="parameter">callbackWhenRemoveLine :</span> function to call after the deletion of a line <span class="default">(default value = false)</span></li>
+        </ul>
+
+    </div>
+
+    <div class="page-header sub">
+        <h2>Functions</h2>
+        <ul>
+            <li>
+                <a href="#base-chart">setDisplayPoints</a>
+            </li>
+        </ul>
+
+    </div>
+
+    <div>
+
+        <h2>
+            <a href="#base-chart" name="base-chart">#</a>
+            setDisplayPoints
+        </h2>
+    </div>
+
+</div>
+</BODY>
+</HTML>
