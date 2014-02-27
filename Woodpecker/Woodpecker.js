@@ -31,6 +31,7 @@
 var Woodpecker = Class.create( {
     initialize: function( parameters )
     {
+    alert("ici");
         // Parameters
         this.containerId = parameters.containerId;
         this.container = $( "#" + this.containerId );
