@@ -371,12 +371,10 @@ var demos = [
         {
             setMessage( 'Multiple line chart' );
             graph.addData( dataToDisplay[1] );
-            graph.update();
         },
         function ()
         {
             graph.addData( dataToDisplay[2] );
-            graph.update();
         },
         function ()
         {
