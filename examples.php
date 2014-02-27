@@ -377,7 +377,7 @@ var demos = [
         function ()
         {
             setMessage( 'Multiple line chart' );
-            graph.addData( dataToDisplay[1] );
+            graph.addData( dataToDisplay[1], "SlateGray" );
         },
         function ()
         {

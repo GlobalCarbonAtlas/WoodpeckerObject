@@ -164,9 +164,12 @@ var Woodpecker = Class.create( {
         this.data = data;
     },
 
-    addData: function( data )
+    addData: function( data, color )
     {
+        var index = this.data.length;
         this.data.push( data );
+        if( color )
+            this.changeColor( index, color );
         this.update();
     },
 
