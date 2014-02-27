@@ -14,13 +14,6 @@
     <link rel="stylesheet" type="text/css" href="../Woodpecker/d3.css">
     <link rel="stylesheet" type="text/css" href="../Woodpecker/Woodpecker.css">
 
-    <style type="text/css">
-        .comment {
-            text-align: right;
-            margin: -80px 140px 0 0;
-        }
-    </style>
-
     <script type="text/javascript" src="../Woodpecker/js_library/jquery-1.9.1.js"></script>
     <script type="text/javascript" src="../Woodpecker/js_library/jquery.class.js"></script>
     <script type="text/javascript" src="../Woodpecker/js_library/jquery-ui-1.10.2.custom.min.js"></script>
@@ -47,7 +40,13 @@
     </div>
 
     <div id="woodpeckerContainer" class="chart"></div>
-    <div class="comment">Click on one trash to remove a line and launch the callback.</div>
+    <div style="position: absolute; left: 122px; top: 411px;">
+        <svg width="550" height="115">
+            <path d="M5,5L5,45L45,45" style="fill: none; stroke: grey; stroke-width: 1.5px;"></path>
+            <circle r="5" cy="45" cx="45" style="fill: grey;"></circle>
+            <text y="50" x="55" style="fill: grey; font-size: 14px;">Click on a trash to remove a line and launch your function !</text>
+        </svg>
+    </div>
 
     <h4>Code</h4>
 
