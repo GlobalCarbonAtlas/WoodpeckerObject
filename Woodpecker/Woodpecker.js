@@ -43,6 +43,7 @@ var Woodpecker = Class.create( {
         this.imagesToInsertInExport = parameters.imagesToInsertInExport ? parameters.imagesToInsertInExport : false;
         this.imgPath = parameters.imgPath ? parameters.imgPath : "Woodpecker/img";
         this.activeKeys = parameters.activeKeys;
+        this.callbackWhenRemoveLine = parameters.callbackWhenRemoveLine ? parameters.callbackWhenRemoveLine : false;
 
         this.xAxisLabelText = parameters.xAxisLabelText ? parameters.xAxisLabelText : false;
         this.yAxisLabelText = parameters.yAxisLabelText ? parameters.yAxisLabelText : false;
@@ -805,6 +806,8 @@ var Woodpecker = Class.create( {
 
         this.createOrUpdateLegend();
         this.addOrUpdateLinesAndPoints();
+        if( this.callbackWhenRemoveLine )
+            this.callbackWhenRemoveLine( d );
     },
 
     onClickLegendCircle: function( d, i )
