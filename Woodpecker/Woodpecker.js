@@ -40,10 +40,10 @@ var Woodpecker = Class.create( {
 
         this.xAxisLabelText = parameters.xAxisLabelText ? parameters.xAxisLabelText : false;
         this.yAxisLabelText = parameters.yAxisLabelText ? parameters.yAxisLabelText : false;
-        this.xmax = parameters.xmax || 100;
-        this.xmin = parameters.xmin || 0;
-        this.ymax = parameters.ymax || 100;
-        this.ymin = parameters.ymin || 0;
+        this.xmax = 100;
+        this.xmin = 0;
+        this.ymax = 100;
+        this.ymin = 0;
         this.xDomain = parameters.xDomain ? parameters.xDomain : false;
         this.yDomain = parameters.yDomain ? parameters.yDomain : false;
         this.isLinearXAxis = parameters.isLinearXAxis ? parameters.isLinearXAxis : false; // X axis is time by default

@@ -27,7 +27,7 @@
 
     <div class="page-header sub row">
         <h2>Files
-            <small>(this class needs the followed files)</small>
+            <small>(necessary files for implementation)</small>
         </h2>
         <div class="col-md-6">
             <ul>
@@ -49,7 +49,7 @@
         </div>
         <div class="col-md-6">
             <ul>
-                <li>for the contextual menu (click right)
+                <li>for the contextual menu (right click on the chart)
                     <ul>
                         <li>Woodpecker/contextmenu.css</li>
                         <li>Woodpecker/contextmenu.js</li>
@@ -71,8 +71,9 @@
         </div>
     </div>
 
-    <div class="page-header sub">
+    <div class="page-header sub row">
         <h2>Parameters</h2>
+
         <ul>
             <li><span class="parameter">containerId :</span> identifier of the div containing the graph <span class="comment">(mandatory)</span></li>
             <li><span class="parameter">data :</span> data to display <span class="default">(default value = false)</span></li>
@@ -86,26 +87,75 @@
             <li><span class="parameter">imgPath :</span> path for images to be inserted in the exports <span class="default">(default value = "Woodpecker/img")</span></li>
             <li><span class="parameter">activeKeys :</span> boolean to activate keys (X and Y) to zoom with keyboard <span class="default">(default value = false)</span></li>
             <li><span class="parameter">callbackWhenRemoveLine :</span> function to call after the deletion of a line <span class="default">(default value = false)</span></li>
+            <li><span class="parameter">xAxisLabelText :</span> label of the X axis <span class="default">(default value = false)</span></li>
+            <li><span class="parameter">yAxisLabelText :</span> label of the Y axis <span class="default">(default value = false)</span></li>
+            <li><span class="parameter">xDomain :</span> values domain for X axis. If no setted domain, it will be adjusted in function of the dataset <span class="default">(default value = false)</span>
+            </li>
+            <li><span class="parameter">yDomain :</span> values domain for Y axis. If no setted domain, it will be adjusted in function of the dataset <span class="default">(default value = false)</span>
+            </li>
+            <li><span class="parameter">isLinearXAxis :</span> boolean to state if X axis is linear (d3.scale.linear()) or time (d3.time.scale()) <span class="default">(default value = false for time axis)</span>
+            </li>
+            <li><span class="parameter">svgWidth :</span> width of the svg chart <span class="default">(default value = width of container (containerId) if exists, "500px" otherwise)</span>
+            </li>
+            <li><span class="parameter">svgHeight :</span> height of the svg chart <span class="default">(default value = height of container (containerId) if > 260, "400px" otherwise)</span>
+            </li>
+            <li><span class="parameter">interpolation :</span> interpolation of the data <span class="default">(default value = "linear")</span></li>
         </ul>
+    </div>
 
+    <div class="page-header sub row">
+        <h2>Functions</h2>
+
+        <div class="col-md-3">
+            <ul>
+                <li><a href="#setDisplayPoints">setDisplayPoints</a></li>
+                <li><a href="#setDisplayContextualMenu">setDisplayContextualMenu</a></li>
+                <li><a href="#getYDomain">getYDomain</a></li>
+                <li><a href="#getXDomain">getXDomain</a></li>
+                <li><a href="#setZoomXAvailable">setZoomXAvailable</a></li>
+                <li><a href="#setZoomYAvailable">setZoomYAvailable</a></li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <li><a href="#setDisplayPoints">setDisplayPoints</a></li>
+            <li><a href="#setDisplayContextualMenu">setDisplayContextualMenu</a></li>
+            <li><a href="#getYDomain">getYDomain</a></li>
+            <li><a href="#getXDomain">getXDomain</a></li>
+            <li><a href="#setZoomXAvailable">setZoomXAvailable</a></li>
+            <li><a href="#setZoomYAvailable">setZoomYAvailable</a></li>
+        </div>
+        <div class="col-md-4"></div>
     </div>
 
     <div class="page-header sub">
-        <h2>Functions</h2>
-        <ul>
-            <li>
-                <a href="#base-chart">setDisplayPoints</a>
-            </li>
-        </ul>
+        <h2># Accessors</h2>
 
-    </div>
-
-    <div>
-
-        <h2>
-            <a href="#base-chart" name="base-chart">#</a>
-            setDisplayPoints
-        </h2>
+        <div class="description">
+            <h5>
+                <div id="setDisplayPoints">setDisplayPoints</div>
+            </h5>
+            Set the displayPoints value : boolean to display points.
+            <h5>
+                <div id="setDisplayContextualMenu">setDisplayContextualMenu</div>
+            </h5>
+            Set the displayIconsMenu value : boolean to display contextual menu.
+            <h5>
+                <div id="getYDomain">getYDomain</div>
+            </h5>
+            Get the yDomain : values domain of the Y axis.
+            <h5>
+                <div id="getXDomain">getXDomain</div>
+            </h5>
+            Get the xDomain : values domain of the X axis.
+            <h5>
+                <div id="setZoomXAvailable">setZoomXAvailable</div>
+            </h5>
+            Set the zoomXAvailable value : boolean to allow zoom on X axis.
+            <h5>
+                <div id="setZoomYAvailable">setZoomYAvailable</div>
+            </h5>
+            Set the zoomYAvailable value : boolean to allow zoom on Y axis.
+        </div>
     </div>
 
 </div>
