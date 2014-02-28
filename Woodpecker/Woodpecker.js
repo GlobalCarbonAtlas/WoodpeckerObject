@@ -1,8 +1,8 @@
 /*
  * Copyright Patrick Brockmann, Vanessa Maigne & Pascal Evano, 2013
  *
- * Patrick.Brockmann@lsce.ipsl.fr
  * Vanessa.Maigne@lsce.ipsl.fr
+ * Patrick.Brockmann@lsce.ipsl.fr
  * Pascal.Evano@lsce.ipsl.fr
  *
  * Licensed under the CeCILL-B license under French law and abiding
@@ -12,13 +12,6 @@
  * "http://www.cecill.info".
  *
  ##########################################################################
- Parameters :
- - imagesToInsertInExport :
- - displayBackground : boolean to indicates if we add a background to the images (for transparents images by example). Use of exportFooter style in css.
- - images : array of images to display
- - encodedImage : the encoded image in base64
- - width : the width of the image (need to calculate the rect width if a background is asked)
- - height : the height of the image (need to calculate the rect height if a background is asked)
  */
 
 var Woodpecker = Class.create( {
@@ -111,50 +104,26 @@ var Woodpecker = Class.create( {
 
 
 // **************************************************************
-// ********************** ACCESSORS *****************************
-// **************************************************************
-    setDisplayPoints: function( displayPoints )
-    {
-        this.displayPoints = displayPoints;
-    },
-
-    setDisplayIconsMenu: function( displayIconsMenu )
-    {
-        this.displayIconsMenu = displayIconsMenu;
-    },
-
-    setDisplayContextualMenu: function( displayContextualMenu )
-    {
-        this.displayContextualMenu = displayContextualMenu;
-    },
-
-    getYDomain: function()
-    {
-        return this.yDomain;
-    },
-
-    getXDomain: function()
-    {
-        return this.xDomain;
-    },
-
-    setZoomXAvailable: function( zoomXAvailable )
-    {
-        this.zoomXAvailable = zoomXAvailable;
-    },
-
-    setZoomYAvailable: function( zoomYAvailable )
-    {
-        this.zoomYAvailable = zoomYAvailable;
-    },
-
-
-// **************************************************************
 // *********************** DATA *********************************
 // **************************************************************
     setData: function( data )
     {
         this.data = data;
+    },
+
+    /**
+     * This method returns only the series to display (not the disabled ones)
+     */
+    getEnableDataSeries: function()
+    {
+        return this.data.filter(
+                function( d )
+                {
+                    return !d.disabled
+                } ).map( function( d )
+        {
+            return d.data;
+        } );
     },
 
     addData: function( data, color )
@@ -197,23 +166,6 @@ var Woodpecker = Class.create( {
         if( this.displayContextualMenu )
             this.createOrUpdateContextMenu();
         this.redraw();
-    },
-
-    update: function()
-    {
-        this.createGraph( false );
-    },
-
-    init: function()
-    {
-        var thisKeys = Object.keys( this );
-        $( thisKeys ).each( jQuery.proxy( function( i, d )
-        {
-            this[d] = this.initContext[d];
-        }, this ) );
-        this.initContext = jQuery.extend( true, {}, this );
-        this.createGraph( false );
-        this.initZoom();
     },
 
     createSVG: function()
@@ -262,35 +214,32 @@ var Woodpecker = Class.create( {
                 .attr( 'class', 'lines' );
     },
 
-    onClickRemoveLines: function()
+    update: function()
     {
-        this.removeAllLines();
-        if( this.displayContextualMenu )
-            this.createOrUpdateContextMenu();
-        if( this.displayIconsMenu )
-            this.createOrUpdateIconsMenu();
-        this.selectedLineIndex = 0;
+        this.createGraph( false );
     },
 
-    removeLine: function( i )
+    init: function()
     {
-        this.onDblClickLegend( this.data[i] );
-    },
-
-    onClickPoint: function()
-    {
-        this.displayPoints = !this.displayPoints;
-        this.redraw();
-        if( this.displayContextualMenu )
-            this.createOrUpdateContextMenu();
-        if( this.displayIconsMenu )
-            this.createOrUpdateIconsMenu();
+        var thisKeys = Object.keys( this );
+        $( thisKeys ).each( jQuery.proxy( function( i, d )
+        {
+            this[d] = this.initContext[d];
+        }, this ) );
+        this.initContext = jQuery.extend( true, {}, this );
+        this.createGraph( false );
+        this.initZoom();
     },
 
 
 // **************************************************************
 // *********************** AXIS *********************************
 // **************************************************************
+    setYAxisLabelText: function( yAxisLabelText )
+    {
+        this.yAxisLabelText = yAxisLabelText;
+    },
+
     createOrUpdateAxis: function()
     {
         // If domains are already changed by a zoom or pan, we don't update
@@ -480,15 +429,15 @@ var Woodpecker = Class.create( {
         this.updateZoomXY();
     },
 
-    setYAxisLabelText: function( yAxisLabelText )
-    {
-        this.yAxisLabelText = yAxisLabelText;
-    },
-
 
 // **************************************************************
 // ********************* LINES, POINTS **************************
 // **************************************************************
+    setDisplayPoints: function( displayPoints )
+    {
+        this.displayPoints = displayPoints;
+    },
+
     addOrUpdateLinesAndPoints: function()
     {
 //        if( !this.displayPlot )
@@ -631,6 +580,21 @@ var Woodpecker = Class.create( {
         this.onClickLegendCircle( d, i );
     },
 
+    onClickRemoveAllLines: function()
+    {
+        this.removeAllLines();
+        if( this.displayContextualMenu )
+            this.createOrUpdateContextMenu();
+        if( this.displayIconsMenu )
+            this.createOrUpdateIconsMenu();
+        this.selectedLineIndex = 0;
+    },
+
+    removeLine: function( i )
+    {
+        this.onDblClickLegend( this.data[i] );
+    },
+
     removeAllLines: function()
     {
         this.data.splice( 0, this.data.length );
@@ -642,6 +606,16 @@ var Woodpecker = Class.create( {
     {
         var line = this.data[i];
         this.onClickLegend( line );
+    },
+
+    onClickPoint: function()
+    {
+        this.displayPoints = !this.displayPoints;
+        this.redraw();
+        if( this.displayContextualMenu )
+            this.createOrUpdateContextMenu();
+        if( this.displayIconsMenu )
+            this.createOrUpdateIconsMenu();
     },
 
 
@@ -827,6 +801,16 @@ var Woodpecker = Class.create( {
 // **************************************************************
 // *********************** DOMAINS ******************************
 // **************************************************************
+    getXDomain: function()
+    {
+        return this.x.domain();
+    },
+
+    getYDomain: function()
+    {
+        return this.y.domain();
+    },
+
     /**
      * This method update the x and y domains in function of the enable data and the size of the graph
      */
@@ -862,37 +846,12 @@ var Woodpecker = Class.create( {
         this.yDomain = this.updateDomainIfUniqueValue( this.yDomain, this.y.domain() );
     },
 
-    /**
-     * This method returns only the series to display (not the disabled ones)
-     */
-    getEnableDataSeries: function()
-    {
-        return this.data.filter(
-                function( d )
-                {
-                    return !d.disabled
-                } ).map( function( d )
-        {
-            return d.data;
-        } );
-    },
-
     updateDomainIfUniqueValue: function( domain, axisDomain )
     {
         if( !domain && axisDomain[0] == axisDomain[1] )
             return [axisDomain[0] - axisDomain[0] / 2, axisDomain[0] + axisDomain[0] / 2];
         else
             return domain;
-    },
-
-    getXDomain: function()
-    {
-        return this.x.domain();
-    },
-
-    getYDomain: function()
-    {
-        return this.y.domain();
     },
 
 
@@ -987,6 +946,16 @@ var Woodpecker = Class.create( {
 // **************************************************************
 // ************************** ZOOM ******************************
 // **************************************************************
+    setZoomXAvailable: function( zoomXAvailable )
+    {
+        this.zoomXAvailable = zoomXAvailable;
+    },
+
+    setZoomYAvailable: function( zoomYAvailable )
+    {
+        this.zoomYAvailable = zoomYAvailable;
+    },
+
     /**
      * This method bind
      *   - standard zoom to mousewheel
@@ -1100,6 +1069,16 @@ var Woodpecker = Class.create( {
 // **************************************************************
 // ************************** MENU ******************************
 // **************************************************************
+    setDisplayIconsMenu: function( displayIconsMenu )
+    {
+        this.displayIconsMenu = displayIconsMenu;
+    },
+
+    setDisplayContextualMenu: function( displayContextualMenu )
+    {
+        this.displayContextualMenu = displayContextualMenu;
+    },
+
     createOrUpdateContextMenu: function()
     {
         var items = new Array();
@@ -1133,7 +1112,7 @@ var Woodpecker = Class.create( {
 
         items.push( { text: "Export graph", icon: this.imgPath + "/export.svg", alias:"export", action: jQuery.proxy( this.onClickExport, this ) } );
         if( isMoreLines )
-            items.push( { text: "Delete line(s)", icon: this.imgPath + "/trash2.svg", alias:"lines", action: jQuery.proxy( this.onClickRemoveLines, this ) } );
+            items.push( { text: "Delete line(s)", icon: this.imgPath + "/trash2.svg", alias:"lines", action: jQuery.proxy( this.onClickRemoveAllLines, this ) } );
         else
             items.push( { text: "Delete line(s)", icon: this.imgPath + "/trash2.svg", disable:true } );
 
@@ -1161,7 +1140,7 @@ var Woodpecker = Class.create( {
             var divZoom = $( '<div id="WPzoomIcon" class="WPiconMenu"><img src="' + this.imgPath + '/maximize2.svg" title="Reset zoom"/></div>' );
             divZoom.on( "click", jQuery.proxy( this.initZoom, this ) );
             var divTrash = $( '<div id="WPlineIcon" class="WPiconMenu"><img src="' + this.imgPath + '/trash2.svg" title="Delete line(s)"/></div>' );
-            divTrash.on( "click", jQuery.proxy( this.onClickRemoveLines, this ) );
+            divTrash.on( "click", jQuery.proxy( this.onClickRemoveAllLines, this ) );
             if( this.displayPoints )
                 var divPoint = $( '<div id="WPpointIcon" class="WPiconMenu"><img src="' + this.imgPath + '/line.svg" title="Hide points"/></div>' );
             else
@@ -1216,23 +1195,6 @@ var Woodpecker = Class.create( {
 // **************************************************************
 // ************************** COLOR *****************************
 // **************************************************************
-    createColorPicker: function()
-    {
-        this.colorPicker = $.farbtastic( this.containerColorPickerId ).linkTo( jQuery.proxy( this.onClickColorPicker, this ) );
-    },
-
-    onClickColorPicker: function()
-    {
-        this.containerColor.css( { backgroundColor:this.colorPicker.color } );
-        if( !this.selectedLine )
-            this.selectedLine = this.data[0];
-        this.selectedLine.color = this.colorPicker.color;
-        var color = this.color;
-        color[this.selectedLineIndex] = this.colorPicker.color;
-        this.color = color;
-        this.redraw();
-    },
-
     getFreeColor: function( i )
     {
         var color = this.color[i % 20];
@@ -1253,6 +1215,11 @@ var Woodpecker = Class.create( {
         }
     },
 
+    createColorPicker: function()
+    {
+        this.colorPicker = $.farbtastic( this.containerColorPickerId ).linkTo( jQuery.proxy( this.onClickColorPicker, this ) );
+    },
+
     changeColor: function( i, color )
     {
         this.selectedLineIndex = i;
@@ -1262,10 +1229,41 @@ var Woodpecker = Class.create( {
         this.redraw();
     },
 
+    onClickColorPicker: function()
+    {
+        this.containerColor.css( { backgroundColor:this.colorPicker.color } );
+        if( !this.selectedLine )
+            this.selectedLine = this.data[0];
+        this.selectedLine.color = this.colorPicker.color;
+        var color = this.color;
+        color[this.selectedLineIndex] = this.colorPicker.color;
+        this.color = color;
+        this.redraw();
+    },
+
 
 // **************************************************************
 // ************************ INTERPOLATION ***********************
 // **************************************************************
+    getDataForInterpolation: function()
+    {
+        return {"name": "Mode", "children":[
+            {"name":"linear"},
+            {"name":"basis"},
+            {"name":"bundle"},
+            {"name":"cardinal"},
+            {"name":"step", "children":[
+                {"name":"step-before"},
+                {"name":"step-after"}
+            ]}
+        ]};
+    },
+
+    setInterpolation: function( interpolation )
+    {
+        this.interpolation = interpolation;
+    },
+
     createTreeForInterpolation: function()
     {
         $( "#WPiTree" ).remove();
@@ -1285,18 +1283,12 @@ var Woodpecker = Class.create( {
         new Tree( variables );
     },
 
-    getDataForInterpolation: function()
+    resizeDivForTree: function( argument, containerId, treeInitWidth )
     {
-        return {"name": "Mode", "children":[
-            {"name":"linear"},
-            {"name":"basis"},
-            {"name":"bundle"},
-            {"name":"cardinal"},
-            {"name":"step", "children":[
-                {"name":"step-before"},
-                {"name":"step-after"}
-            ]}
-        ]};
+        if( argument.children )
+            d3.select( "#" + containerId ).transition().style( "width", (treeInitWidth + this.treeDepth * (argument.depth + 1) + 50) + "px" );
+        else if( argument._children )
+            d3.select( "#" + containerId ).transition().style( "width", (treeInitWidth + argument.depth * (this.treeDepth + 50) + "px" ) );
     },
 
     onClickDisplayInterpolation: function()
@@ -1304,14 +1296,6 @@ var Woodpecker = Class.create( {
         this.zIndex++;
         $( "#" + this.containerInterpolationTree ).css( {position:"absolute", top:$( "#WPinterpolationIcon" ).offset().top + 50 + "px", left : $( "#WPinterpolationIcon" ).offset().left - 140 + "px", "zIndex":this.zIndex} );
         $( "#" + this.containerInterpolationTree ).fadeToggle();
-    },
-
-    resizeDivForTree: function( argument, containerId, treeInitWidth )
-    {
-        if( argument.children )
-            d3.select( "#" + containerId ).transition().style( "width", (treeInitWidth + this.treeDepth * (argument.depth + 1) + 50) + "px" );
-        else if( argument._children )
-            d3.select( "#" + containerId ).transition().style( "width", (treeInitWidth + argument.depth * (this.treeDepth + 50) + "px" ) );
     },
 
     onClickInterpolation: function( argument )
@@ -1325,11 +1309,6 @@ var Woodpecker = Class.create( {
             this.interpolation = argument.name;
             this.redraw();
         }
-    },
-
-    setInterpolation: function( interpolation )
-    {
-        this.interpolation = interpolation;
     },
 
 

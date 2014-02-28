@@ -84,6 +84,13 @@
         <li><span class="parameter">displayPoints :</span> boolean to display points <span class="default">(default value = false)</span></li>
         <li><span class="parameter">imagesToInsertInExport :</span> boolean to insert images (as logo by example) in the exports <span
                 class="default">(default value = false)</span></li>
+        - imagesToInsertInExport :
+        - displayBackground : boolean to indicates if we add a background to the images (for transparents images by example). Use of exportFooter style in css.
+        - images : array of images to display
+        - encodedImage : the encoded image in base64
+        - width : the width of the image (need to calculate the rect width if a background is asked)
+        - height : the height of the image (need to calculate the rect height if a background is asked)
+
         <li><span class="parameter">imgPath :</span> path for images to be inserted in the exports <span class="default">(default value = "Woodpecker/img")</span></li>
         <li><span class="parameter">activeKeys :</span> boolean to activate keys (X and Y) to zoom with keyboard <span class="default">(default value = false)</span></li>
         <li><span class="parameter">callbackWhenRemoveLine :</span> function to call after the deletion of a line <span class="default">(default value = false)</span></li>
@@ -108,33 +115,126 @@
 <div class="page-header sub row">
     <h2>Functions</h2>
 
-    <div class="col-md-3">
-        <ul>
-            <li><a href="#setDisplayPoints">setDisplayPoints</a></li>
-            <li><a href="#setDisplayIconsMenu">setDisplayIconsMenu</a></li>
-            <li><a href="#setDisplayContextualMenu">setDisplayContextualMenu</a></li>
-            <li><a href="#getYDomain">getYDomain</a></li>
-            <li><a href="#getXDomain">getXDomain</a></li>
-            <li><a href="#setZoomXAvailable">setZoomXAvailable</a></li>
-            <li><a href="#setZoomYAvailable">setZoomYAvailable</a></li>
-        </ul>
-    </div>
-    <div class="col-md-4">
-        <li><a href="#setData">setData</a></li>
-        <li><a href="#addData">addData</a></li>
-        <li><a href="#createGraph">createGraph</a></li>
-        <li><a href="#update">update</a></li>
-        <li><a href="#init">init</a></li>
-        <li><a href="#createSVG">createSVG</a></li>
-        <li><a href="#onClickRemoveLines">onClickRemoveLines</a></li>
-        <li><a href="#removeLine">removeLine</a></li>
-        <li><a href="#onClickPoint">onClickPoint</a></li>
-    </div>
-    <div class="col-md-4"></div>
+    <ul>
+        <div class="row">
+            <div class="col-md-3">
+                <a href="#accessors" class="functions">Basic accessors</a>
+                <li><a href="#setDisplayPoints">setDisplayPoints</a></li>
+                <li><a href="#setDisplayIconsMenu">setDisplayIconsMenu</a></li>
+                <li><a href="#setDisplayContextualMenu">setDisplayContextualMenu</a></li>
+                <li><a href="#setZoomXAvailable">setZoomXAvailable</a></li>
+                <li><a href="#setZoomYAvailable">setZoomYAvailable</a></li>
+            </div>
+            <div class="col-md-3">
+                <a href="#data" class="functions">Data</a>
+                <li><a href="#setData">setData</a></li>
+                <li><a href="#addData">addData</a></li>
+                <a href="#others" class="functions">Others</a>
+                <li><a href="#createSimpleBox">createSimpleBox</a></li>
+                <li><a href="#createDivsForGraph">createDivsForGraph</a></li>
+                <li><a href="#bindTools">bindTools</a></li>
+            </div>
+            <div class="col-md-3">
+                <a href="#graph" class="functions">Graph</a>
+                <li><a href="#createGraph">createGraph</a></li>
+                <li><a href="#update">update</a></li>
+                <li><a href="#init">init</a></li>
+                <li><a href="#createSVG">createSVG</a></li>
+                <li><a href="#redrawAfterPanOrZoom">redrawAfterPanOrZoom</a></li>
+                <li><a href="#redraw">redraw</a></li>
+
+            </div>
+            <div class="col-md-3">
+                <a href="#axis" class="functions">Axis</a>
+                <li><a href="#createOrUpdateAxis">createOrUpdateAxis</a></li>
+                <li><a href="#getAxisLabelInArrayWithExponent">getAxisLabelInArrayWithExponent</a></li>
+                <li><a href="#onClickAxis">onClickAxis</a></li>
+                <li><a href="#onClickUpdateAxis">onClickUpdateAxis</a></li>
+                <li><a href="#setYAxisLabelText">setYAxisLabelText</a></li>
+            </div>
+        </div>
+        <BR/>
+
+        <div class="row">
+            <div class="col-md-3">
+                <a href="#linesPoints" class="functions">Lines, points</a>
+                <li><a href="#addOrUpdateLinesAndPoints">addOrUpdateLinesAndPoints</a></li>
+                <li><a href="#onClickLine">onClickLine</a></li>
+                <li><a href="#onClickRemoveAllLines">onClickRemoveAllLines</a></li>
+                <li><a href="#removeLine">removeLine</a></li>
+                <li><a href="#removeAllLines">removeAllLines</a></li>
+                <li><a href="#hideOrDisplayLine">hideOrDisplayLine</a></li>
+                <li><a href="#onClickPoint">onClickPoint</a></li>
+            </div>
+            <div class="col-md-3">
+                <a href="#legends" class="functions">Legends</a>
+                <li><a href="#createOrUpdateLegend">createOrUpdateLegend</a></li>
+                <li><a href="#onMouseOverOrOutLegend">onMouseOverOrOutLegend</a></li>
+                <li><a href="#onClickLegend">onClickLegend</a></li>
+                <li><a href="#onDblClickLegend">onDblClickLegend</a></li>
+                <li><a href="#onClickLegendCircle">onClickLegendCircle</a></li>
+            </div>
+            <div class="col-md-3">
+                <a href="#domains" class="functions">Domains</a>
+                <li><a href="#updateXYDomainsWithValues">updateXYDomainsWithValues</a></li>
+                <li><a href="#updateXYDomains">updateXYDomains</a></li>
+                <li><a href="#getEnableDataSeries">getEnableDataSeries</a></li>
+                <li><a href="#updateDomainIfUniqueValue">updateDomainIfUniqueValue</a></li>
+                <li><a href="#getYDomain">getYDomain</a></li>
+                <li><a href="#getXDomain">getXDomain</a></li>
+            </div>
+            <div class="col-md-3">
+                <a href="#zooms" class="functions">Zooms</a>
+                <li><a href="#bindZoomsToGraph">bindZoomsToGraph</a></li>
+                <li><a href="#bindZoom">bindZoom</a></li>
+                <li><a href="#initZoom">initZoom</a></li>
+                <li><a href="#updateZoomXY">updateZoomXY</a></li>
+                <li><a href="#onClickZoomX">onClickZoomX</a></li>
+                <li><a href="#onClickZoomY">onClickZoomY</a></li>
+            </div>
+        </div>
+        <BR/>
+
+        <div class="row">
+            <div class="col-md-3">
+                <a href="#keys" class="functions">Keys</a>
+                <li><a href="#keydownXY">keydownXY</a></li>
+                <li><a href="#keyupXY">keyupXY</a></li>
+
+                <a href="#menus" class="functions">Menus</a>
+                <li><a href="#createOrUpdateContextMenu">createOrUpdateContextMenu</a></li>
+                <li><a href="#createOrUpdateIconsMenu">createOrUpdateIconsMenu</a></li>
+                <li><a href="#removeIconsMenu">removeIconsMenu</a></li>
+            </div>
+            <div class="col-md-3">
+                <a href="#colors" class="functions">Colors</a>
+                <li><a href="#createColorPicker">createColorPicker</a></li>
+                <li><a href="#onClickColorPicker">onClickColorPicker</a></li>
+                <li><a href="#getFreeColor">getFreeColor</a></li>
+                <li><a href="#changeColor">changeColor</a></li>
+            </div>
+            <div class="col-md-3">
+                <a href="#interpolations" class="functions">Interpolations</a>
+                <li><a href="#createTreeForInterpolation">createTreeForInterpolation</a></li>
+                <li><a href="#getDataForInterpolation">getDataForInterpolation</a></li>
+                <li><a href="#onClickDisplayInterpolation">onClickDisplayInterpolation</a></li>
+                <li><a href="#resizeDivForTree">resizeDivForTree</a></li>
+                <li><a href="#onClickInterpolation">onClickInterpolation</a></li>
+                <li><a href="#setInterpolation">setInterpolation</a></li>
+            </div>
+            <div class="col-md-3">
+                <a href="#others" class="functions">Exports</a>
+                <li><a href="#onClickExport">onClickExport</a></li>
+                <li><a href="#onClickExportSVG">onClickExportSVG</a></li>
+                <li><a href="#onClickExportPNG">onClickExportPNG</a></li>
+                <li><a href="#onClickExportWithParameters">onClickExportWithParameters</a></li>
+                <li><a href="#submitDownloadForm">submitDownloadForm</a></li>
+            </div>
+    </ul>
 </div>
 
 <div class="page-header sub row">
-    <h2># Accessors</h2>
+    <div id="accessors"><h2># Basic accessors</h2></div>
 
     <div class="col-md-7">
         <h5>
@@ -152,14 +252,6 @@
     </div>
     <div class="col-md-5">
         <h5>
-            <div id="getYDomain">getYDomain()</div>
-        </h5>
-        Get the yDomain : values domain of the Y axis.
-        <h5>
-            <div id="getXDomain">getXDomain()</div>
-        </h5>
-        Get the xDomain : values domain of the X axis.
-        <h5>
             <div id="setZoomXAvailable">setZoomXAvailable( zoomXAvailable )</div>
         </h5>
         Set the zoomXAvailable value : boolean to allow zoom on X axis.
@@ -171,7 +263,7 @@
 </div>
 
 <div class="page-header sub row">
-    <h2># Data</h2>
+    <div id="data"><h2># Data</h2></div>
 
     <div class="col-md-10">
         <h5>
@@ -187,7 +279,7 @@
 
 
 <div class="page-header sub row">
-    <h2># Graph</h2>
+    <div id="graph"><h2># Graph</h2></div>
 
     <div class="col-md-10">
         <h5>
@@ -206,6 +298,39 @@
             <div id="createSVG">createSVG()</div>
         </h5>
         Build the svg structure.
+    </div>
+</div>
+
+<div class="page-header sub row">
+    <div id="axis"><h2># Axis</h2></div>
+
+    <div class="col-md-10">
+        <h5>
+            <div id="createOrUpdateAxis">createOrUpdateAxis( )</div>
+        </h5>
+        <h5>
+            <div id="getAxisLabelInArrayWithExponent">getAxisLabelInArrayWithExponent( label )</div>
+        </h5>
+        <h5>
+            <div id="onClickAxis">onClickAxis( )</div>
+        </h5>
+        <h5>
+            <div id="onClickUpdateAxis">onClickUpdateAxis( )</div>
+        </h5>
+        <h5>
+            <div id="setYAxisLabelText">setYAxisLabelText( yAxisLabelText )</div>
+        </h5>
+    </div>
+</div>
+
+<div class="page-header sub row">
+    <h2># Lines, Points</h2>
+
+    <div class="col-md-10">
+        <h5>
+            <div id="">( )</div>
+        </h5>
+
         <h5>
             <div id="onClickRemoveLines">onClickRemoveLines()</div>
         </h5>
@@ -222,39 +347,6 @@
 </div>
 
 <div class="page-header sub row">
-    <h2># Axis</h2>
-
-    <!--<div class="col-md-10">-->
-        <!--<h5>-->
-            <!--<div id="">( )</div>-->
-        <!--</h5>-->
-        <!--<h5>-->
-            <!--<div id="">( )</div>-->
-        <!--</h5>-->
-        <!--<h5>-->
-            <!--<div id="">( )</div>-->
-        <!--</h5>-->
-        <!--<h5>-->
-            <!--<div id="">( )</div>-->
-        <!--</h5>-->
-        <!--<h5>-->
-            <!--<div id="">( )</div>-->
-        <!--</h5>-->
-        <!--<h5>-->
-            <!--<div id="">( )</div>-->
-        <!--</h5>-->
-    <!--</div>-->
-</div>
-
-<div class="page-header sub row">
-    <h2># Lines, Points</h2>
-
-    <div class="col-md-10">
-
-    </div>
-</div>
-
-<div class="page-header sub row">
     <h2># Legend</h2>
 
     <div class="col-md-10">
@@ -263,15 +355,15 @@
 </div>
 
 
-<!--DOMAINS-->
-<!--REDRAW-->
-<!--ZOOM-->
-<!--KEY-->
-<!--MENU-->
-<!--COLOR-->
-<!--INTERPOLATION-->
-<!--EXPORT-->
-<!--DIVS Color, Interpolation & Export-->
+<h5>
+    <div id="getYDomain">getYDomain()</div>
+</h5>
+Get the yDomain : values domain of the Y axis.
+<h5>
+    <div id="getXDomain">getXDomain()</div>
+</h5>
+Get the xDomain : values domain of the X axis.
+
 </div>
 </BODY>
 </HTML>

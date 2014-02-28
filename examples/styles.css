@@ -40,6 +40,10 @@ footer hr {
     float: right;
 }
 
+.functions {
+    color: #333333;
+}
+
 #message {
     font-size: 16px;
     height: 32px;
