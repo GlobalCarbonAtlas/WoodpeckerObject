@@ -575,21 +575,6 @@ var Woodpecker = Class.create( {
         } );
     },
 
-    onClickLine: function( i, d )
-    {
-        this.onClickLegendCircle( d, i );
-    },
-
-    onClickRemoveAllLines: function()
-    {
-        this.removeAllLines();
-        if( this.displayContextualMenu )
-            this.createOrUpdateContextMenu();
-        if( this.displayIconsMenu )
-            this.createOrUpdateIconsMenu();
-        this.selectedLineIndex = 0;
-    },
-
     removeLine: function( i )
     {
         this.onDblClickLegend( this.data[i] );
@@ -606,6 +591,21 @@ var Woodpecker = Class.create( {
     {
         var line = this.data[i];
         this.onClickLegend( line );
+    },
+
+    onClickLine: function( i, d )
+    {
+        this.onClickLegendCircle( d, i );
+    },
+
+    onClickRemoveAllLines: function()
+    {
+        this.removeAllLines();
+        if( this.displayContextualMenu )
+            this.createOrUpdateContextMenu();
+        if( this.displayIconsMenu )
+            this.createOrUpdateIconsMenu();
+        this.selectedLineIndex = 0;
     },
 
     onClickPoint: function()
