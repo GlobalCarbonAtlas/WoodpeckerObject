@@ -36,7 +36,7 @@
 
 <div class="page-header sub">
     <h2>Setup in php</h2>
-    <span class="comment">(warning : your file must be in the same directory as WoodpeckerObject, otherwise use the HTML setup and change the paths)</span>
+    <span class="comment">(warning : your file must be in the same directory as WoodpeckerObject, otherwise use the HTML setup)</span>
 </div>
 
 <div class="sourcecode highlight">
@@ -47,7 +47,7 @@
 
 <div class="page-header sub">
     <h2>Setup in html</h2>
-    <span class="comment">(warning : your file must be in the same directory as WoodpeckerObject, otherwise change the paths)</span>
+    <span class="comment">(warning : your file must be in the same directory as WoodpeckerObject, otherwise change the paths without forget to set the parameter "imgPath" in your Woodpecker instance)</span>
 </div>
 <div class="sourcecode highlight">
     <pre><code class="html">
