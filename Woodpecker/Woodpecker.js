@@ -811,9 +811,6 @@ var Woodpecker = Class.create( {
         return this.y.domain();
     },
 
-    /**
-     * This method update the x and y domains in function of the enable data and the size of the graph
-     */
     updateXYDomainsWithValues: function( xDomain, yDomain )
     {
         this.xDomain = xDomain;

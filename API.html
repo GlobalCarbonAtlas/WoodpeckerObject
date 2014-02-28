@@ -242,7 +242,7 @@
         <h5>
             <div id="setData">setData( data )</div>
         </h5>
-        Set the data with the new dataset. This function doesn't automatically update the graph (you have to call update()).
+        Set the dataset with the new data. This function doesn't automatically update the graph (you have to call the function update).
         <h5>
             <div id="getEnableDataSeries">getEnableDataSeries()</div>
         </h5>
@@ -277,31 +277,38 @@
         <h5>
             <div id="redrawAfterPanOrZoom">redrawAfterPanOrZoom()</div>
         </h5>
+        Update the X and Y domains and redraw the graph.
         <h5>
             <div id="redraw">redraw()</div>
         </h5>
+        Update all the svg elements in the graph (lines, points, axis, legends, colors...).
     </div>
 </div>
 
 <div class="page-header sub row">
     <div id="axis"><h2><a href="#functions">#</a> Axis</h2></div>
 
-    <div class="col-md-10">
+    <div class="col-md-12">
         <h5>
             <div id="setYAxisLabelText">setYAxisLabelText( yAxisLabelText )</div>
         </h5>
+        Set a new label for the Y axis.
         <h5>
             <div id="getAxisLabelInArrayWithExponent">getAxisLabelInArrayWithExponent( label )</div>
         </h5>
+        Return the label for axis with raised exponents (if exist).
         <h5>
-            <div id="createOrUpdateAxis">createOrUpdateAxis( )</div>
+            <div id="createOrUpdateAxis">createOrUpdateAxis()</div>
         </h5>
+        Create or update the svg axis elements (label, ticks...).
         <h5>
-            <div id="onClickAxis">onClickAxis( )</div>
+            <div id="onClickAxis">onClickAxis()</div>
         </h5>
+        Display the "WPaxis" div with the current domains values.
         <h5>
-            <div id="onClickUpdateAxis">onClickUpdateAxis( )</div>
+            <div id="onClickUpdateAxis">onClickUpdateAxis()</div>
         </h5>
+        Update the X and Y axis with the new domains values given in the "WPaxis" div ("xMin", "xMax", yMin", "yMax"). Zooms are no more available because of the new setted domains.
     </div>
 </div>
 
@@ -321,12 +328,15 @@
         <h5>
             <div id="updateXYDomainsWithValues">updateXYDomainsWithValues( xDomain, yDomain )</div>
         </h5>
+        Set the X and Y domains and adjust to the size of the graph.
         <h5>
-            <div id="updateXYDomains">updateXYDomains( )</div>
+            <div id="updateXYDomains">updateXYDomains()</div>
         </h5>
+        Update the X and Y domains in function of the enable data and the size of the graph.
         <h5>
             <div id="updateDomainIfUniqueValue">updateDomainIfUniqueValue( domain, axisDomain )</div>
         </h5>
+        Create fake domains if there's only one unique value for data : [value - value/2, value + value/2]
     </div>
 </div>
 
@@ -337,16 +347,19 @@
         <h5>
             <div id="setDisplayPoints">setDisplayPoints( displayPoints )</div>
         </h5>
-        Set the displayPoints value : boolean to display points.
+        Set the displayPoints value : boolean to display or not points.
         <h5>
-            <div id="addOrUpdateLinesAndPoints">addOrUpdateLinesAndPoints( )</div>
+            <div id="addOrUpdateLinesAndPoints">addOrUpdateLinesAndPoints()</div>
         </h5>
+        Add or update the svg lines and points (color, radius, opacity, ...).
         <h5>
             <div id="removeLine">removeLine( i )</div>
         </h5>
+        Remove only the line number i and update graph and menus.
         <h5>
-            <div id="removeAllLines">removeAllLines( )</div>
+            <div id="removeAllLines">removeAllLines()</div>
         </h5>
+        Remove all the lines and update graph and menus.
         <h5>
             <div id="hideOrDisplayLine">hideOrDisplayLine( i )</div>
         </h5>
@@ -357,7 +370,6 @@
             <div id="onClickRemoveLines">onClickRemoveLines()</div>
         </h5>
         Remove all lines and update graph and menus.
-        Remove only the line number i and update graph and menus.
         <h5>
             <div id="onClickPoint">onClickPoint()</div>
         </h5>
@@ -395,11 +407,11 @@
         <h5>
             <div id="setZoomXAvailable">setZoomXAvailable( zoomXAvailable )</div>
         </h5>
-        Set the zoomXAvailable value : boolean to allow zoom on X axis.
+        Set the zoomXAvailable value : boolean to allow or not zoom on X axis.
         <h5>
             <div id="setZoomYAvailable">setZoomYAvailable( zoomYAvailable )</div>
         </h5>
-        Set the zoomYAvailable value : boolean to allow zoom on Y axis.
+        Set the zoomYAvailable value : boolean to allow or not zoom on Y axis.
         <h5>
             <div id="bindZoomsToGraph">bindZoomsToGraph()</div>
         </h5>
@@ -442,11 +454,11 @@
         <h5>
             <div id="setDisplayIconsMenu">setDisplayIconsMenu( displayIconsMenu )</div>
         </h5>
-        Set the displayIconsMenu value : boolean to display icons menu.
+        Set the displayIconsMenu value : boolean to display or not icons menu.
         <h5>
             <div id="setDisplayContextualMenu">setDisplayContextualMenu( displayContextualMenu )</div>
         </h5>
-        Set the displayContextualMenu value : boolean to display contextual menu.
+        Set the displayContextualMenu value : boolean to display or not contextual menu.
         <h5>
             <div id="createOrUpdateContextMenu">createOrUpdateContextMenu()</div>
         </h5>
