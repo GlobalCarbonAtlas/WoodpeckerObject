@@ -16,148 +16,262 @@
 
 <div class="container">
 
-    <div class="page-header title">
-        <h1 style="float:left;">Woodpecker API</h1>
+<div class="page-header title">
+    <h1 style="float:left;">Woodpecker API</h1>
 
-        <div id="link">
-            <a target="_blank" href="https://github.com/GlobalCarbonAtlas/WoodpeckerObject"><img class="git-icon" src="examples/GitHub-64px.png"></a>
-        </div>
-        <div class="clearfix"></div>
+    <div id="link">
+        <a target="_blank" href="https://github.com/GlobalCarbonAtlas/WoodpeckerObject"><img class="git-icon" src="examples/GitHub-64px.png"></a>
     </div>
+    <div class="clearfix"></div>
+</div>
 
-    <div class="page-header sub row">
-        <h2>Files
-            <small>(necessary files for implementation)</small>
-        </h2>
-        <div class="col-md-6">
-            <ul>
-                <li>jquery and javascript librairies
-                    <ul>
-                        <li>Woodpecker/js_library/jquery-1.9.1.js</li>
-                        <li>Woodpecker/js_library/jquery.class.js</li>
-                        <li>Woodpecker/js_library/jquery-ui-1.10.2.custom.min.js</li>
-                        <li>Woodpecker/js_library/jshashtable-2.1.js</li>
-                    </ul>
-                </li>
-                <li>d3.js
-                    <ul>
-                        <li>Woodpecker/d3.css</li>
-                        <li>Woodpecker/d3.v3/d3.v3.js</li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-        <div class="col-md-6">
-            <ul>
-                <li>for the contextual menu (right click on the chart)
-                    <ul>
-                        <li>Woodpecker/contextmenu.css</li>
-                        <li>Woodpecker/contextmenu.js</li>
-                    </ul>
-                </li>
-                <li>for the colorpicker (click on a color circle in the legend or a line)
-                    <ul>
-                        <li>Woodpecker/farbtastic/farbtastic.css</li>
-                        <li>Woodpecker/farbtastic/farbtastic.js</li>
-                    </ul>
-                </li>
-                <li>for the tree interpolation (click on the interpolation icon)
-                    <ul>
-                        <li>Woodpecker/Tree.css</li>
-                        <li>Woodpecker/Tree.js</li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="page-header sub row">
-        <h2>Parameters</h2>
-
+<div class="page-header sub row">
+    <h2>Files
+        <small>(necessary files for implementation)</small>
+    </h2>
+    <div class="col-md-6">
         <ul>
-            <li><span class="parameter">containerId :</span> identifier of the div containing the graph <span class="comment">(mandatory)</span></li>
-            <li><span class="parameter">data :</span> data to display <span class="default">(default value = false)</span></li>
-            <li><span class="parameter">toolsContainer :</span> container div for the tools like colorPicker, the interpolation, the axis and the exports <span class="default">(default value = "body")</span>
+            <li>jquery and javascript librairies
+                <ul>
+                    <li>Woodpecker/js_library/jquery-1.9.1.js</li>
+                    <li>Woodpecker/js_library/jquery.class.js</li>
+                    <li>Woodpecker/js_library/jquery-ui-1.10.2.custom.min.js</li>
+                    <li>Woodpecker/js_library/jshashtable-2.1.js</li>
+                </ul>
             </li>
-            <li><span class="parameter">displayContextualMenu :</span> boolean to display the contextual menu <span class="default">(default value = false)</span></li>
-            <li><span class="parameter">displayIconsMenu :</span> boolean to display the icons menu <span class="default">(default value = false)</span></li>
-            <li><span class="parameter">displayPoints :</span> boolean to display points <span class="default">(default value = false)</span></li>
-            <li><span class="parameter">imagesToInsertInExport :</span> boolean to insert images (as logo by example) in the exports <span
-                    class="default">(default value = false)</span></li>
-            <li><span class="parameter">imgPath :</span> path for images to be inserted in the exports <span class="default">(default value = "Woodpecker/img")</span></li>
-            <li><span class="parameter">activeKeys :</span> boolean to activate keys (X and Y) to zoom with keyboard <span class="default">(default value = false)</span></li>
-            <li><span class="parameter">callbackWhenRemoveLine :</span> function to call after the deletion of a line <span class="default">(default value = false)</span></li>
-            <li><span class="parameter">xAxisLabelText :</span> label of the X axis <span class="default">(default value = false)</span></li>
-            <li><span class="parameter">yAxisLabelText :</span> label of the Y axis <span class="default">(default value = false)</span></li>
-            <li><span class="parameter">xDomain :</span> values domain for X axis. If no setted domain, it will be adjusted in function of the dataset <span class="default">(default value = false)</span>
+            <li>d3.js
+                <ul>
+                    <li>Woodpecker/d3.css</li>
+                    <li>Woodpecker/d3.v3/d3.v3.js</li>
+                </ul>
             </li>
-            <li><span class="parameter">yDomain :</span> values domain for Y axis. If no setted domain, it will be adjusted in function of the dataset <span class="default">(default value = false)</span>
-            </li>
-            <li><span class="parameter">isLinearXAxis :</span> boolean to state if X axis is linear (d3.scale.linear()) or time (d3.time.scale()) <span class="default">(default value = false for time axis)</span>
-            </li>
-            <li><span class="parameter">svgWidth :</span> width of the svg chart <span class="default">(default value = width of container (containerId) if exists, "500px" otherwise)</span>
-            </li>
-            <li><span class="parameter">svgHeight :</span> height of the svg chart <span class="default">(default value = height of container (containerId) if > 260, "400px" otherwise)</span>
-            </li>
-            <li><span class="parameter">interpolation :</span> interpolation of the data <span class="default">(default value = "linear")</span></li>
         </ul>
     </div>
+    <div class="col-md-6">
+        <ul>
+            <li>for the contextual menu (right click on the chart)
+                <ul>
+                    <li>Woodpecker/contextmenu.css</li>
+                    <li>Woodpecker/contextmenu.js</li>
+                </ul>
+            </li>
+            <li>for the colorpicker (click on a color circle in the legend or a line)
+                <ul>
+                    <li>Woodpecker/farbtastic/farbtastic.css</li>
+                    <li>Woodpecker/farbtastic/farbtastic.js</li>
+                </ul>
+            </li>
+            <li>for the tree interpolation (click on the interpolation icon)
+                <ul>
+                    <li>Woodpecker/Tree.css</li>
+                    <li>Woodpecker/Tree.js</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
 
-    <div class="page-header sub row">
-        <h2>Functions</h2>
+<div class="page-header sub row">
+    <h2>Parameters</h2>
 
-        <div class="col-md-3">
-            <ul>
-                <li><a href="#setDisplayPoints">setDisplayPoints</a></li>
-                <li><a href="#setDisplayContextualMenu">setDisplayContextualMenu</a></li>
-                <li><a href="#getYDomain">getYDomain</a></li>
-                <li><a href="#getXDomain">getXDomain</a></li>
-                <li><a href="#setZoomXAvailable">setZoomXAvailable</a></li>
-                <li><a href="#setZoomYAvailable">setZoomYAvailable</a></li>
-            </ul>
-        </div>
-        <div class="col-md-4">
+    <ul>
+        <li><span class="parameter">containerId :</span> identifier of the div containing the graph <span class="comment">(mandatory)</span></li>
+        <li><span class="parameter">data :</span> data to display <span class="default">(default value = false)</span></li>
+        <li><span class="parameter">toolsContainer :</span> container div for the tools like colorPicker, the interpolation, the axis and the exports <span class="default">(default value = "body")</span>
+        </li>
+        <li><span class="parameter">displayContextualMenu :</span> boolean to display the contextual menu <span class="default">(default value = false)</span></li>
+        <li><span class="parameter">displayIconsMenu :</span> boolean to display the icons menu <span class="default">(default value = false)</span></li>
+        <li><span class="parameter">displayPoints :</span> boolean to display points <span class="default">(default value = false)</span></li>
+        <li><span class="parameter">imagesToInsertInExport :</span> boolean to insert images (as logo by example) in the exports <span
+                class="default">(default value = false)</span></li>
+        <li><span class="parameter">imgPath :</span> path for images to be inserted in the exports <span class="default">(default value = "Woodpecker/img")</span></li>
+        <li><span class="parameter">activeKeys :</span> boolean to activate keys (X and Y) to zoom with keyboard <span class="default">(default value = false)</span></li>
+        <li><span class="parameter">callbackWhenRemoveLine :</span> function to call after the deletion of a line <span class="default">(default value = false)</span></li>
+        <li><span class="parameter">xAxisLabelText :</span> label of the X axis <span class="default">(default value = false)</span></li>
+        <li><span class="parameter">yAxisLabelText :</span> label of the Y axis <span class="default">(default value = false)</span></li>
+        <li><span class="parameter">xDomain :</span> values domain for X axis. If no setted domain, it will be adjusted in function of the dataset <span class="default">(default value = false)</span>
+        </li>
+        <li><span class="parameter">yDomain :</span> values domain for Y axis. If no setted domain, it will be adjusted in function of the dataset <span class="default">(default value = false)</span>
+        </li>
+        <li><span class="parameter">isLinearXAxis :</span> boolean to state if X axis is linear (d3.scale.linear()) or time (d3.time.scale()) <span class="default">(default value = false for time axis)</span>
+        </li>
+        <li><span class="parameter">svgWidth :</span> width of the svg chart <span
+                class="default">(default value = width of container (containerId) if exists, "500px" otherwise)</span>
+        </li>
+        <li><span class="parameter">svgHeight :</span> height of the svg chart <span
+                class="default">(default value = height of container (containerId) if > 260, "400px" otherwise)</span>
+        </li>
+        <li><span class="parameter">interpolation :</span> interpolation of the data <span class="default">(default value = "linear")</span></li>
+    </ul>
+</div>
+
+<div class="page-header sub row">
+    <h2>Functions</h2>
+
+    <div class="col-md-3">
+        <ul>
             <li><a href="#setDisplayPoints">setDisplayPoints</a></li>
+            <li><a href="#setDisplayIconsMenu">setDisplayIconsMenu</a></li>
             <li><a href="#setDisplayContextualMenu">setDisplayContextualMenu</a></li>
             <li><a href="#getYDomain">getYDomain</a></li>
             <li><a href="#getXDomain">getXDomain</a></li>
             <li><a href="#setZoomXAvailable">setZoomXAvailable</a></li>
             <li><a href="#setZoomYAvailable">setZoomYAvailable</a></li>
-        </div>
-        <div class="col-md-4"></div>
+        </ul>
     </div>
-
-    <div class="page-header sub">
-        <h2># Accessors</h2>
-
-        <div class="description">
-            <h5>
-                <div id="setDisplayPoints">setDisplayPoints</div>
-            </h5>
-            Set the displayPoints value : boolean to display points.
-            <h5>
-                <div id="setDisplayContextualMenu">setDisplayContextualMenu</div>
-            </h5>
-            Set the displayIconsMenu value : boolean to display contextual menu.
-            <h5>
-                <div id="getYDomain">getYDomain</div>
-            </h5>
-            Get the yDomain : values domain of the Y axis.
-            <h5>
-                <div id="getXDomain">getXDomain</div>
-            </h5>
-            Get the xDomain : values domain of the X axis.
-            <h5>
-                <div id="setZoomXAvailable">setZoomXAvailable</div>
-            </h5>
-            Set the zoomXAvailable value : boolean to allow zoom on X axis.
-            <h5>
-                <div id="setZoomYAvailable">setZoomYAvailable</div>
-            </h5>
-            Set the zoomYAvailable value : boolean to allow zoom on Y axis.
-        </div>
+    <div class="col-md-4">
+        <li><a href="#setData">setData</a></li>
+        <li><a href="#addData">addData</a></li>
+        <li><a href="#createGraph">createGraph</a></li>
+        <li><a href="#update">update</a></li>
+        <li><a href="#init">init</a></li>
+        <li><a href="#createSVG">createSVG</a></li>
+        <li><a href="#onClickRemoveLines">onClickRemoveLines</a></li>
+        <li><a href="#removeLine">removeLine</a></li>
+        <li><a href="#onClickPoint">onClickPoint</a></li>
     </div>
+    <div class="col-md-4"></div>
+</div>
 
+<div class="page-header sub row">
+    <h2># Accessors</h2>
+
+    <div class="col-md-7">
+        <h5>
+            <div id="setDisplayPoints">setDisplayPoints( displayPoints )</div>
+        </h5>
+        Set the displayPoints value : boolean to display points.
+        <h5>
+            <div id="setDisplayIconsMenu">setDisplayIconsMenu( displayIconsMenu )</div>
+        </h5>
+        Set the displayIconsMenu value : boolean to display icons menu.
+        <h5>
+            <div id="setDisplayContextualMenu">setDisplayContextualMenu( displayContextualMenu )</div>
+        </h5>
+        Set the displayContextualMenu value : boolean to display contextual menu.
+    </div>
+    <div class="col-md-5">
+        <h5>
+            <div id="getYDomain">getYDomain()</div>
+        </h5>
+        Get the yDomain : values domain of the Y axis.
+        <h5>
+            <div id="getXDomain">getXDomain()</div>
+        </h5>
+        Get the xDomain : values domain of the X axis.
+        <h5>
+            <div id="setZoomXAvailable">setZoomXAvailable( zoomXAvailable )</div>
+        </h5>
+        Set the zoomXAvailable value : boolean to allow zoom on X axis.
+        <h5>
+            <div id="setZoomYAvailable">setZoomYAvailable( zoomYAvailable )</div>
+        </h5>
+        Set the zoomYAvailable value : boolean to allow zoom on Y axis.
+    </div>
+</div>
+
+<div class="page-header sub row">
+    <h2># Data</h2>
+
+    <div class="col-md-10">
+        <h5>
+            <div id="setData">setData( data )</div>
+        </h5>
+        Set the data with the new dataset. This function doesn't automatically update the graph (you have to call update()).
+        <h5>
+            <div id="addData">addData( data, color )</div>
+        </h5>
+        Add data to current dataset, set the color (if given) to the new line and update the graph.
+    </div>
+</div>
+
+
+<div class="page-header sub row">
+    <h2># Graph</h2>
+
+    <div class="col-md-10">
+        <h5>
+            <div id="createGraph">createGraph( isNewGraph )</div>
+        </h5>
+        Create a graph with all given parameters. If it's a new graph (isNewGraph = true), some divs for svg, interpolation, color, etc... will be created.
+        <h5>
+            <div id="update">update()</div>
+        </h5>
+        Update the graph with all new setted parameters (axis, zooms, domains, colors, ...).
+        <h5>
+            <div id="init">init()</div>
+        </h5>
+        Init the graph with all original parameters.
+        <h5>
+            <div id="createSVG">createSVG()</div>
+        </h5>
+        Build the svg structure.
+        <h5>
+            <div id="onClickRemoveLines">onClickRemoveLines()</div>
+        </h5>
+        Remove all lines and update graph and menus.
+        <h5>
+            <div id="removeLine">removeLine( i )</div>
+        </h5>
+        Remove only the line number i and update graph and menus.
+        <h5>
+            <div id="onClickPoint">onClickPoint()</div>
+        </h5>
+        Display or hide points and update graph and menus.
+    </div>
+</div>
+
+<div class="page-header sub row">
+    <h2># Axis</h2>
+
+    <!--<div class="col-md-10">-->
+        <!--<h5>-->
+            <!--<div id="">( )</div>-->
+        <!--</h5>-->
+        <!--<h5>-->
+            <!--<div id="">( )</div>-->
+        <!--</h5>-->
+        <!--<h5>-->
+            <!--<div id="">( )</div>-->
+        <!--</h5>-->
+        <!--<h5>-->
+            <!--<div id="">( )</div>-->
+        <!--</h5>-->
+        <!--<h5>-->
+            <!--<div id="">( )</div>-->
+        <!--</h5>-->
+        <!--<h5>-->
+            <!--<div id="">( )</div>-->
+        <!--</h5>-->
+    <!--</div>-->
+</div>
+
+<div class="page-header sub row">
+    <h2># Lines, Points</h2>
+
+    <div class="col-md-10">
+
+    </div>
+</div>
+
+<div class="page-header sub row">
+    <h2># Legend</h2>
+
+    <div class="col-md-10">
+
+    </div>
+</div>
+
+
+<!--DOMAINS-->
+<!--REDRAW-->
+<!--ZOOM-->
+<!--KEY-->
+<!--MENU-->
+<!--COLOR-->
+<!--INTERPOLATION-->
+<!--EXPORT-->
+<!--DIVS Color, Interpolation & Export-->
 </div>
 </BODY>
 </HTML>

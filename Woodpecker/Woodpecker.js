@@ -487,7 +487,7 @@ var Woodpecker = Class.create( {
 
 
 // **************************************************************
-// ********************* LINES, POINTS***************************
+// ********************* LINES, POINTS **************************
 // **************************************************************
     addOrUpdateLinesAndPoints: function()
     {
@@ -802,6 +802,10 @@ var Woodpecker = Class.create( {
 
         this.createOrUpdateLegend();
         this.addOrUpdateLinesAndPoints();
+        if( this.displayContextualMenu )
+            this.createOrUpdateContextMenu();
+        if( this.displayIconsMenu )
+            this.createOrUpdateIconsMenu();
         if( this.callbackWhenRemoveLine )
             this.callbackWhenRemoveLine( d );
     },
