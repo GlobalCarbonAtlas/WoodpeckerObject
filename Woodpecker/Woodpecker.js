@@ -96,7 +96,7 @@ var Woodpecker = Class.create( {
             $( '<img/>' )[0].src = this.imgPath + "/axisX_lock.svg";
             $( '<img/>' )[0].src = this.imgPath + "/line.svg";
         }
-        this.createGraph( true );
+        this.createGraph();
         this.bindTools();
         // We need a deep copy of the context to init the graph
         this.initContext = jQuery.extend( true, {}, this );
@@ -139,26 +139,20 @@ var Woodpecker = Class.create( {
 // **************************************************************
 // ********************** GRAPH *********************************
 // **************************************************************
-    createGraph: function( isNewGraph )
+    createGraph: function()
     {
-        if( isNewGraph )
-        {
-            // This div is neeeded to clone the graph in one invisible div to remove unprintable elements
-            var divToCloneGraph = $( '<div id="WPdivToCloneToExportGraph"></div>' );
-            this.container.append( divToCloneGraph );
-        }
+        // This div is neeeded to clone the graph in one invisible div to remove unprintable elements
+        var divToCloneGraph = $( '<div id="WPdivToCloneToExportGraph"></div>' );
+        this.container.append( divToCloneGraph );
         if( this.displayIconsMenu )
             this.createOrUpdateIconsMenu();
         else
             this.removeIconsMenu();
-        if( isNewGraph )
-        {
-            this.updateXYDomains();
-            this.createSVG();
-            this.createColorPicker();
-            if( this.displayContextualMenu || this.displayIconsMenu )
-                this.createTreeForInterpolation();
-        }
+        this.updateXYDomains();
+        this.createSVG();
+        this.createColorPicker();
+        if( this.displayContextualMenu || this.displayIconsMenu )
+            this.createTreeForInterpolation();
         this.addOrUpdateLinesAndPoints();
         this.createOrUpdateAxis();
         this.createOrUpdateLegend();
@@ -216,7 +210,12 @@ var Woodpecker = Class.create( {
 
     update: function()
     {
-        this.createGraph( false );
+        this.updateXYDomains();
+        this.addOrUpdateLinesAndPoints();
+        this.createOrUpdateAxis();
+        this.createOrUpdateLegend();
+        this.bindZoomsToGraph();
+        this.redraw();
     },
 
     init: function()
@@ -227,7 +226,7 @@ var Woodpecker = Class.create( {
             this[d] = this.initContext[d];
         }, this ) );
         this.initContext = jQuery.extend( true, {}, this );
-        this.createGraph( false );
+        this.update();
         this.initZoom();
     },
 
