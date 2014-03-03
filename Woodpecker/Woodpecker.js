@@ -215,6 +215,10 @@ var Woodpecker = Class.create( {
         this.createOrUpdateAxis();
         this.createOrUpdateLegend();
         this.bindZoomsToGraph();
+        if( this.displayContextualMenu )
+            this.createOrUpdateContextMenu();
+        if( this.displayIconsMenu )
+            this.createOrUpdateIconsMenu();
         this.redraw();
     },
 

@@ -269,6 +269,11 @@
         </div>
         <div class="row">
             <div class="col-md-4">
+                <h4><a role="button" href="examples/addData.html" class="btn btn-default">view »</a>&nbsp;&nbsp;Add data</h4>
+
+                <p>Add data in a "empty" chart.</p>
+            </div>
+            <div class="col-md-4">
                 <h4><a role="button" href="examples/removeLineCallback.html" class="btn btn-default">view »</a>&nbsp;&nbsp;Callback for remove</h4>
 
                 <p>Call a function after the deletion of a line.</p>
