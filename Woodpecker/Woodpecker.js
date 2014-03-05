@@ -585,6 +585,11 @@ var Woodpecker = Class.create( {
 
     removeAllLines: function()
     {
+        if( this.callbackWhenRemoveLine )
+            jQuery.each( this.data, jQuery.proxy( function( i, d )
+            {
+                this.callbackWhenRemoveLine( d );
+            }, this ) );
         this.data.splice( 0, this.data.length );
         this.addOrUpdateLinesAndPoints();
         this.createOrUpdateLegend();
