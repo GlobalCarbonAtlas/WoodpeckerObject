@@ -489,6 +489,18 @@ var Woodpecker = Class.create( {
                 d.color = this.getFreeColor( i );
             return d.color
         }, this ) )
+                .style( 'stroke-width', jQuery.proxy( function( d, i )
+        {
+            if( !d.width )
+                d.width = "1.5px";
+            return d.width
+        }, this ) )
+                .style( 'stroke-dasharray', jQuery.proxy( function( d, i )
+        {
+            if( !d.dash)
+                d.dash= "1,0";
+            return d.dash
+        }, this ) )
                 .on( 'click', jQuery.proxy( function( d, i )
         {
             this.onClickLine( i, d );
@@ -1365,7 +1377,8 @@ var Woodpecker = Class.create( {
         d3.select( "#WPdivToCloneToExportGraph svg" ).selectAll( "g line" ).attr( "style", "shape-rendering: crispedges; stroke:#000000; stroke-opacity: 0.25" );
         d3.select( "#WPdivToCloneToExportGraph svg" ).selectAll( "path.domain" ).attr( "style", "shape-rendering: crispedges; stroke:#000000; stroke-opacity: 0.75" );
         d3.select( "#WPdivToCloneToExportGraph svg" ).selectAll( "line.zero" ).attr( "style", "shape-rendering: crispedges; stroke:#000000; stroke-opacity: 0.75" );
-        d3.select( "#WPdivToCloneToExportGraph svg" ).selectAll( ".lines path" ).attr( "style", "fill:none; stroke-linecap: round; stroke-width: 3.5px" );
+        //d3.select( "#WPdivToCloneToExportGraph svg" ).selectAll( ".lines path" ).attr( "style", "fill:none; stroke-linecap: round; stroke-width: 5px" );
+        d3.select( "#WPdivToCloneToExportGraph svg" ).selectAll( ".lines path" ).attr( "style", "fill:none; stroke-linecap: round;" );
         d3.select( "#WPdivToCloneToExportGraph svg" ).selectAll( "text" ).attr( "style", "font-size: " + fontSize + "; font-weight: " + fontWeight + "; font-family: 'Ubuntu',Arial,sans-serif" );
         d3.select( "#WPdivToCloneToExportGraph svg" ).selectAll( "g.y.axis text" ).attr( "style", "text-anchor: end; cursor: ns-resize; stroke: none; font-size: " + fontSize + "; font-weight: " + fontWeight + "; font-family: 'Ubuntu',Arial,sans-serif" );
         d3.select( "#WPdivToCloneToExportGraph svg" ).selectAll( "g.x.axis text" ).attr( "style", "text-anchor: middle; cursor: ns-resize; stroke: none; font-size: " + fontSize + "; font-weight: " + fontWeight + "; font-family: 'Ubuntu',Arial,sans-serif" );

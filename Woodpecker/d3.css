@@ -23,7 +23,7 @@ text {
 }
 
 /**********
-*  Axes
+*  Axis
 */
 
 .axis path {
@@ -63,7 +63,6 @@ text {
 
 .lines path {
     fill: none;
-    stroke-width: 1.5px;
     stroke-linecap: round;
 
     transition: stroke-width 250ms linear;
