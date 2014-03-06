@@ -491,15 +491,17 @@ var Woodpecker = Class.create( {
         }, this ) )
                 .style( 'stroke-width', jQuery.proxy( function( d, i )
         {
-            if( !d.width )
-                d.width = "1.5px";
-            return d.width
+            return d.width ? d.width : "2px";
+//            if( !d.width )
+//                d.width = "1.5px";
+//            return d.width
         }, this ) )
                 .style( 'stroke-dasharray', jQuery.proxy( function( d, i )
         {
-            if( !d.dash)
-                d.dash= "1,0";
-            return d.dash
+            return d.dash ? d.dash : 1;
+//            if( !d.dash)
+//                d.dash= "1,0";
+//            return d.dash
         }, this ) )
                 .on( 'click', jQuery.proxy( function( d, i )
         {
