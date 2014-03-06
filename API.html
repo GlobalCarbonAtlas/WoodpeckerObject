@@ -7,8 +7,6 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="examples/styles.css">
-
-    <!--<script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>-->
 </HEAD>
 
 <BODY>
@@ -363,9 +361,11 @@
         <h5>
             <div id="hideOrDisplayLine">hideOrDisplayLine( i )</div>
         </h5>
+        Hide the selected line or display if it was already hided. If all lines are hided, we display all the series.
         <h5>
             <div id="onClickLine">onClickLine( i, d )</div>
         </h5>
+        Display the color picker to change the color of the line.
         <h5>
             <div id="onClickRemoveLines">onClickRemoveLines()</div>
         </h5>
@@ -384,18 +384,23 @@
         <h5>
             <div id="createOrUpdateLegend">createOrUpdateLegend()</div>
         </h5>
+        Create the legend with a trash icon, a color circle and the text line, and adjust the height graph if necessary.
         <h5>
             <div id="onMouseOverOrOutLegend">onMouseOverOrOutLegend( d, isOver )</div>
         </h5>
+        Highlight the line when mouse is over.
         <h5>
             <div id="onClickLegend">onClickLegend( d )</div>
         </h5>
+        Hide the selected line or display if it was already hided. If all lines are hided, we display all the series.
         <h5>
             <div id="onDblClickLegend">onDblClickLegend( d )</div>
         </h5>
+        Remove the selected line and update graph and menus.
         <h5>
             <div id="onClickLegendCircle">onClickLegendCircle( d, i )</div>
         </h5>
+        Display the color picker to change the color of the line.
     </div>
 </div>
 
@@ -415,21 +420,27 @@
         <h5>
             <div id="bindZoomsToGraph">bindZoomsToGraph()</div>
         </h5>
+        Bind zooms on events depended on the browser : standard zoom to mousewheel, zoom by X axis to shitfKey + mousewheel and zoom by Y axis to shitfKey + altKey + mousewheel.
         <h5>
             <div id="bindZoom">bindZoom()</div>
         </h5>
+        Bind zooms on X or Y axis or both in function of the setted variables "zoomXAvailable" and "zoomYAvailable".
         <h5>
             <div id="initZoom">initZoom()</div>
         </h5>
+        Init the graph with the basic zoom and update the axis domains.
         <h5>
             <div id="updateZoomXY">updateZoomXY()</div>
         </h5>
+        Bind zooms after a parameter change on X or Y axis and update graph and menus.
         <h5>
             <div id="onClickZoomX">onClickZoomX()</div>
         </h5>
+        Allow or forbid zoom on X axis and update menus.
         <h5>
             <div id="onClickZoomY">onClickZoomY()</div>
         </h5>
+        Allow or forbid zoom on Y axis and update menus.
     </div>
 </div>
 
@@ -441,9 +452,11 @@
         <h5>
             <div id="keydownXY">keydownXY()</div>
         </h5>
+        Change zoom rights on X or Y axis in function of the used key : press X to zoom on X axis only, Y to zoom on Y axis only.
         <h5>
             <div id="keyupXY">keyupXY()</div>
         </h5>
+        Allow the zooms on both axis when no key is pressed.
     </div>
 </div>
 
@@ -554,7 +567,10 @@
 </div>
 
 <footer>
-    <a href="mailto:Vanessa.Maigne@lsce.ipsl.fr?Subject=WoodpeckerObject"><div class="ff-element ff-mail"></div></a>
+    <a href="mailto:Vanessa.Maigne@lsce.ipsl.fr?Subject=WoodpeckerObject">
+        <div class="ff-element ff-mail"></div>
+    </a>
+
     <p><a target="_blank" href="http://www.globalcarbonatlas.org/?q=flux_ts">&copy; Global Carbon Atlas 2013</a></p>
 </footer>
 

@@ -11,7 +11,8 @@
  * license as circulated by CEA, CNRS and INRIA at the following URL
  * "http://www.cecill.info".
  *
- ##########################################################################
+ * API : http://localhost/WoodpeckerObject/API.html
+ *
  */
 
 var Woodpecker = Class.create( {
@@ -492,16 +493,10 @@ var Woodpecker = Class.create( {
                 .style( 'stroke-width', jQuery.proxy( function( d, i )
         {
             return d.width ? d.width : "2px";
-//            if( !d.width )
-//                d.width = "1.5px";
-//            return d.width
         }, this ) )
                 .style( 'stroke-dasharray', jQuery.proxy( function( d, i )
         {
             return d.dash ? d.dash : 1;
-//            if( !d.dash)
-//                d.dash= "1,0";
-//            return d.dash
         }, this ) )
                 .on( 'click', jQuery.proxy( function( d, i )
         {
