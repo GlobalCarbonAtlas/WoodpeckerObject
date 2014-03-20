@@ -517,21 +517,27 @@
         <h5>
             <div id="getDataForInterpolation">getDataForInterpolation()</div>
         </h5>
+        Return the json values of interpolations to create the tree.
         <h5>
             <div id="setInterpolation">setInterpolation( interpolation )</div>
         </h5>
+        Set the interpolation value.
         <h5>
             <div id="createTreeForInterpolation">createTreeForInterpolation()</div>
         </h5>
+        Create the interpolation tree element by using the files "Tree.css" and "Tree.js".
         <h5>
             <div id="resizeDivForTree">resizeDivForTree( argument, containerId, treeInitWidth )</div>
         </h5>
+        Adjust the size of the interpolation div after a click on a tree element.
         <h5>
             <div id="onClickDisplayInterpolation">onClickDisplayInterpolation()</div>
         </h5>
+        Display or hide the interpolation element.
         <h5>
             <div id="onClickInterpolation">onClickInterpolation( argument )</div>
         </h5>
+        Adjust the size of the interpolation div after a click on a tree element and update the graph with the new interpolation value.
     </div>
 </div>
 
@@ -542,18 +548,23 @@
         <h5>
             <div id="onClickExport">onClickExport()</div>
         </h5>
+        Display or hide the export element.
         <h5>
             <div id="onClickExportSVG">onClickExportSVG()</div>
         </h5>
+        Export graph in SVG format.
         <h5>
             <div id="onClickExportPNG">onClickExportPNG()</div>
         </h5>
+        Export graph in PNG format.
         <h5>
             <div id="onClickExportWithParameters">onClickExportWithParameters( value )</div>
         </h5>
+        Clone the graph in a new element, change styles, add logo if asked (imagesToInsertInExport = true), and submit the form (using of a perl script "download.pl") to export this cloned graph.
         <h5>
             <div id="submitDownloadForm">submitDownloadForm( output_format )</div>
         </h5>
+        Extract the data of the cloned graph as SVG text string and submit the form to the server. The form calls the cgi-bin perl script "/cgi-bin/export/download.pl". The result will be an attachment file to download.
     </div>
 </div>
 
@@ -564,12 +575,15 @@
         <h5>
             <div id="createSimpleBox">createSimpleBox( id, text )</div>
         </h5>
+        Create a basic div box with title, style, ... for elements like interpolation, color picker, ...
         <h5>
             <div id="createDivsForGraph">createDivsForGraph( divContainer, title )</div>
         </h5>
+        Create the div elements for interpolation, color picker, axis, export, and form to export.
         <h5>
             <div id="bindTools">bindTools()</div>
         </h5>
+        Bind some actions and behaviours on some div elements.
     </div>
 </div>
 
