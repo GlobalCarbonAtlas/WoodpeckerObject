@@ -28,6 +28,7 @@ var Woodpecker = Class.create( {
         this.displayIconsMenu = parameters.displayIconsMenu;
         this.displayPoints = parameters.displayPoints ? parameters.displayPoints : false;
         this.imagesToInsertInExport = parameters.imagesToInsertInExport ? parameters.imagesToInsertInExport : false;
+        this.cgiPath = parameters.cgiPath ? parameters.cgiPath : "/cgi-bin/export/";
         this.imgPath = parameters.imgPath ? parameters.imgPath : "Woodpecker/img";
         this.activeKeys = parameters.activeKeys;
         this.callbackWhenRemoveLine = parameters.callbackWhenRemoveLine ? parameters.callbackWhenRemoveLine : false;
@@ -1504,7 +1505,7 @@ var Woodpecker = Class.create( {
         $( divContainer ).append( divExport );
 
         // Form for export
-        var divFormExport = $( '<form id="WPsvg-form" method="post" action="/cgi-bin/export/download.pl"><input type="hidden" name="WPoutput_format"><input type="hidden" name="WPdata"><input type="hidden" name="WPfileName"></form>' );
+        var divFormExport = $( '<form id="WPsvg-form" method="post" action="' + this.cgiPath + 'download.pl"><input type="hidden" name="WPoutput_format"><input type="hidden" name="WPdata"><input type="hidden" name="WPfileName"></form>' );
         $( divContainer ).parent().append( divFormExport );
     },
 
