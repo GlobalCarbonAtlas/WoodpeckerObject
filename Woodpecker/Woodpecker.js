@@ -208,6 +208,28 @@ var Woodpecker = Class.create( {
         this.plot.append( 'g' )
                 .attr( "clip-path", "url(#clip)" )
                 .attr( 'class', 'lines' );
+
+        // Zoom on axis
+        this.plot.append( "svg:rect" )
+                .attr( "class", "zoom xy box" )
+                .attr( "width", this.plotSize.width )
+                .attr( "height", this.plotSize.height )
+                .style( "visibility", "hidden" )
+                .attr( "pointer-events", "all" );
+        this.plot.append( "svg:rect" )
+                .attr( "class", "zoom x box" )
+                .attr( "width", this.plotSize.width )
+                .attr( "height", (this.translateGraph.bottom - 30) + "px" )
+                .attr( "transform", "translate(" + 0 + "," + this.plotSize.height + ")" )
+                .style( "visibility", "hidden" )
+                .attr( "pointer-events", "all" );
+        this.plot.append( "svg:rect" )
+                .attr( "class", "zoom y box" )
+                .attr( "width", this.translateGraph.left - 15 + "px" )
+                .attr( "height", this.plotSize.height )
+                .attr( "transform", "translate(" + (15 - this.translateGraph.left) + ", 0 )" )
+                .style( "visibility", "hidden" )
+                .attr( "pointer-events", "all" );
     },
 
     update: function()
@@ -984,11 +1006,8 @@ var Woodpecker = Class.create( {
                 document.onmousewheel !== undefined ? "mousewheel" : // Webkit and IE support at least "mousewheel"
                         "DOMMouseScroll"; // let's assume that remaining browsers are older Firefox
 
-        this.plot.call( d3.behavior.zoom().x( this.x ).y( this.y ).on( "zoom", jQuery.proxy( this.redrawAfterPanOrZoom, this ) ) );
-
         this.plot.on( "mouseup", jQuery.proxy( function()
         {
-//            this.plot.call( d3.behavior.zoom().x( this.x ).y( this.y ).on( "zoom", jQuery.proxy( this.redrawAfterPanOrZoom, this ) ) );
             this.bindZoom();
         }, this ) );
 
@@ -996,20 +1015,24 @@ var Woodpecker = Class.create( {
         {
             this.bindZoom();
         }, this ) );
+
+        this.plot.select( 'rect.zoom.xy.box' ).call( d3.behavior.zoom().x( this.x ).y( this.y ).on( "zoom", jQuery.proxy( this.redrawAfterPanOrZoom, this ) ) );
+        this.plot.select( 'rect.zoom.x.box' ).call( d3.behavior.zoom().x( this.x ).on( "zoom", jQuery.proxy( this.redrawAfterPanOrZoom, this ) ) );
+        this.plot.select( 'rect.zoom.y.box' ).call( d3.behavior.zoom().y( this.y ).on( "zoom", jQuery.proxy( this.redrawAfterPanOrZoom, this ) ) );
     },
 
     bindZoom: function()
     {
         if( this.zoomXAvailable && this.zoomYAvailable )
-            this.plot.call( d3.behavior.zoom().x( this.x ).y( this.y ).on( "zoom", jQuery.proxy( this.redrawAfterPanOrZoom, this ) ) );
+            this.plot.select( 'rect.zoom.xy.box' ).call( d3.behavior.zoom().x( this.x ).y( this.y ).on( "zoom", jQuery.proxy( this.redrawAfterPanOrZoom, this ) ) );
         else
         {
             if( this.zoomXAvailable )
-                this.plot.call( d3.behavior.zoom().x( this.x ).on( "zoom", jQuery.proxy( this.redrawAfterPanOrZoom, this ) ) );
+                this.plot.select( 'rect.zoom.xy.box' ).call( d3.behavior.zoom().x( this.x ).on( "zoom", jQuery.proxy( this.redrawAfterPanOrZoom, this ) ) );
             else if( this.zoomYAvailable )
-                this.plot.call( d3.behavior.zoom().y( this.y ).on( "zoom", jQuery.proxy( this.redrawAfterPanOrZoom, this ) ) );
+                this.plot.select( 'rect.zoom.xy.box' ).call( d3.behavior.zoom().y( this.y ).on( "zoom", jQuery.proxy( this.redrawAfterPanOrZoom, this ) ) );
             else
-                this.plot.call( d3.behavior.zoom().y( this.y ).on( "zoom", null ) );
+                this.plot.select( 'rect.zoom.xy.box' ).call( d3.behavior.zoom().y( this.y ).on( "zoom", null ) );
         }
     },
 
