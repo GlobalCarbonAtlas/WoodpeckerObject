@@ -1023,7 +1023,6 @@ var Woodpecker = Class.create( {
 
     bindZoom: function()
     {
-
         if( this.zoomXAvailable && this.zoomYAvailable )
             this.plot.select( 'rect.zoom.xy.box' ).call( d3.behavior.zoom().x( this.x ).y( this.y ).on( "zoom", jQuery.proxy( this.redrawAfterPanOrZoom, this ) ) );
         else
