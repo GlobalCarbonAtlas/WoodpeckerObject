@@ -497,7 +497,7 @@ var Woodpecker = Class.create( {
         {
             return d.hover
         } )
-                .classed( 'NotHover', jQuery.proxy( function( d )
+                .classed( 'notHover', jQuery.proxy( function( d )
         {
             return this.isOverOneLegend;
         }, this ) )
