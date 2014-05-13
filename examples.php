@@ -54,16 +54,16 @@
         <span class="comment">&lt;!-- Load css for styles --&gt;</span>
         &lt;<span class="tag">link</span> <span class="attr">rel</span>=<span class="value">"stylesheet"</span><span
             class="attr">type</span>=<span class="value">"text/css"</span> <span class="attr">href</span>=<span
-            class="value">"WoodpeckerObject/Woodpecker/Tree.css"</span>&gt;
+            class="value">"WoodpeckerObject/Woodpecker/resources/Tree.css"</span>&gt;
         &lt;<span class="tag">link</span> <span class="attr">rel</span>=<span class="value">"stylesheet"</span><span
             class="attr">type</span>=<span class="value">"text/css"</span> <span class="attr">href</span>=<span
-            class="value">"WoodpeckerObject/Woodpecker/farbtastic/farbtastic.css"</span>&gt;
+            class="value">"WoodpeckerObject/Woodpecker/resources/farbtastic/farbtastic.css"</span>&gt;
         &lt;<span class="tag">link</span> <span class="attr">rel</span>=<span class="value">"stylesheet"</span><span
             class="attr">type</span>=<span class="value">"text/css"</span> <span class="attr">href</span>=<span
-            class="value">"WoodpeckerObject/Woodpecker/contextmenu.css"</span>&gt;
+            class="value">"WoodpeckerObject/Woodpecker/resources/contextmenu.css"</span>&gt;
         &lt;<span class="tag">link</span> <span class="attr">rel</span>=<span class="value">"stylesheet"</span><span
             class="attr">type</span>=<span class="value">"text/css"</span> <span class="attr">href</span>=<span
-            class="value">"WoodpeckerObject/Woodpecker/d3.css"</span>&gt;
+            class="value">"WoodpeckerObject/Woodpecker/resources/d3.v3/d3.css"</span>&gt;
         &lt;<span class="tag">link</span> <span class="attr">rel</span>=<span class="value">"stylesheet"</span><span
             class="attr">type</span>=<span class="value">"text/css"</span> <span class="attr">href</span>=<span
             class="value">"WoodpeckerObject/Woodpecker/Woodpecker.css"</span>&gt;
@@ -71,28 +71,28 @@
         <span class="comment">&lt;!-- Load javascript librairies--&gt;</span>
         &lt;<span class="tag">script</span> <span class="attr">type</span>=<span
             class="value">"text/javascript"</span><span class="attr">src</span>=<span
-            class="value">"WoodpeckerObject/Woodpecker/js_library/jquery-1.9.1.js"</span>&gt;&lt;/<span class="tag">script</span>&gt;
+            class="value">"WoodpeckerObject/Woodpecker/resources/library/jquery-1.9.1.js"</span>&gt;&lt;/<span class="tag">script</span>&gt;
         &lt;<span class="tag">script</span> <span class="attr">type</span>=<span
             class="value">"text/javascript"</span><span class="attr">src</span>=<span
-            class="value">"WoodpeckerObject/Woodpecker/js_library/jquery.class.js"</span>&gt;&lt;/<span class="tag">script</span>&gt;
+            class="value">"WoodpeckerObject/Woodpecker/resources/library/jquery.class.js"</span>&gt;&lt;/<span class="tag">script</span>&gt;
         &lt;<span class="tag">script</span> <span class="attr">type</span>=<span
             class="value">"text/javascript"</span><span class="attr">src</span>=<span
-            class="value">"WoodpeckerObject/Woodpecker/js_library/jquery-ui-1.10.2.custom.min.js"</span>&gt;&lt;/<span class="tag">script</span>&gt;
+            class="value">"WoodpeckerObject/Woodpecker/resources/library/jquery-ui-1.10.2.custom.min.js"</span>&gt;&lt;/<span class="tag">script</span>&gt;
         &lt;<span class="tag">script</span> <span class="attr">type</span>=<span
             class="value">"text/javascript"</span><span class="attr">src</span>=<span
-            class="value">"WoodpeckerObject/Woodpecker/js_library/jshashtable-2.1.js"</span>&gt;&lt;/<span class="tag">script</span>&gt;
+            class="value">"WoodpeckerObject/Woodpecker/resources/library/jshashtable-2.1.js"</span>&gt;&lt;/<span class="tag">script</span>&gt;
         &lt;<span class="tag">script</span> <span class="attr">type</span>=<span
             class="value">"text/javascript"</span><span class="attr">src</span>=<span
-            class="value">"WoodpeckerObject/Woodpecker/d3.v3/d3.v3.js"</span>&gt;&lt;/<span class="tag">script</span>&gt;
+            class="value">"WoodpeckerObject/Woodpecker/resources/d3.v3/d3.v3.js"</span>&gt;&lt;/<span class="tag">script</span>&gt;
 
         &lt;<span class="tag">script</span> <span class="attr">type</span>=<span
             class="value">"text/javascript"</span><span class="attr">src</span>=<span
-            class="value">"WoodpeckerObject/Woodpecker/Tree.js"</span>&gt;&lt;/<span class="tag">script</span>&gt;
+            class="value">"WoodpeckerObject/Woodpecker/resources/Tree.js"</span>&gt;&lt;/<span class="tag">script</span>&gt;
         &lt;<span class="tag">script</span> <span class="attr">type</span>=<span
-            class="value">"text/javascript"</span><span class="attr">src</span>=<span class="value">"WoodpeckerObject/Woodpecker/farbtastic/farbtastic.js"</span>&gt;&lt;/<span
+            class="value">"text/javascript"</span><span class="attr">src</span>=<span class="value">"WoodpeckerObject/Woodpecker/resources/farbtastic/farbtastic.js"</span>&gt;&lt;/<span
             class="tag">script</span>&gt;
         &lt;<span class="tag">script</span> <span class="attr">type</span>=<span
-            class="value">"text/javascript"</span><span class="attr">src</span>=<span class="value">"WoodpeckerObject/Woodpecker/contextmenu.js"</span>&gt;&lt;/<span
+            class="value">"text/javascript"</span><span class="attr">src</span>=<span class="value">"WoodpeckerObject/Woodpecker/resources/contextmenu.js"</span>&gt;&lt;/<span
             class="tag">script</span>&gt;
         &lt;<span class="tag">script</span> <span class="attr">type</span>=<span
             class="value">"text/javascript"</span><span class="attr">src</span>=<span class="value">"WoodpeckerObject/Woodpecker/Woodpecker.js"</span>&gt;&lt;/<span
