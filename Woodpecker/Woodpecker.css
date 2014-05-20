@@ -19,7 +19,7 @@ rect {
     fill: #FFFFFF;
 }
 
-#WPgraphSvg text, #divToGetCss {
+#WPgraphSvg text, #WPgraphLegendSvg text, #divToGetCss {
     font-weight: bold;
     font-size: 15px;
 }
@@ -138,9 +138,7 @@ rect {
 #WPiconsMenu {
     float: right;
     margin-right: 40px;
-    margin-bottom: 10px;
     position: relative;
-    top: 10px;
 }
 
 .WPiconMenu, .WPiconMenu2 {
