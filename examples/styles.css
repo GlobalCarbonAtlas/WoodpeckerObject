@@ -55,6 +55,13 @@ h5 {
     color: #888888;
 }
 
+.ff-text {
+    padding: 5px;
+    font-size: 10px;
+    float: left;
+    color: #888888;
+}
+
 /* *************** LOAD FONT FACE *************** */
 
 footer {
@@ -101,6 +108,14 @@ footer hr {
 
 .chart {
     margin-bottom: 50px;
+}
+
+#woodpeckerGraphContainer {
+    height: 300px;
+}
+
+#woodpeckerLegendContainer {
+    height: 50px;
 }
 
 .sourcecode pre {

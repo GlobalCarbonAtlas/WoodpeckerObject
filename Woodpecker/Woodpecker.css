@@ -19,12 +19,21 @@ rect {
     fill: #FFFFFF;
 }
 
+rect.zoom.x {
+    cursor: col-resize;
+}
+
+rect.zoom.y {
+    cursor: row-resize;
+}
+
+/* !! WARNING !! Do not change theses labels and their order because of their use in the getStyleSheetPropertyValue function */
 #WPgraphSvg text, #WPgraphLegendSvg text, #divToGetCss {
     font-weight: bold;
     font-size: 15px;
 }
 
-#WPgraphSvg .lines path{
+#WPgraphSvg .lines path {
     cursor: pointer;
 }
 

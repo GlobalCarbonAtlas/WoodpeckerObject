@@ -32,11 +32,12 @@
     <button class="btn btn-primary" onclick="startDemo();" type="button">Start Demo</button>
 </div>
 
-<div id="woodpeckerContainer" class="chart"></div>
+<div id="woodpeckerGraphContainer"></div>
+<div id="woodpeckerLegendContainer"></div>
 
 <div class="page-header sub">
     <h2>Setup in php</h2>
-    <span class="comment">(warning : your file must be in the same directory as WoodpeckerObject, otherwise use the HTML setup)</span>
+    <span class="comment">(warning : your file must be in the same directory as the Woodpecker directory, otherwise use the HTML setup)</span>
 </div>
 
 <div class="sourcecode highlight">
@@ -47,7 +48,7 @@
 
 <div class="page-header sub">
     <h2>Setup in html</h2>
-    <span class="comment">(warning : your file must be in the same directory as WoodpeckerObject, otherwise change the paths without forget to set the parameter "imgPath" in your Woodpecker instance)</span>
+    <span class="comment">(warning : your file must be in the same directory as Woodpecker, otherwise change the paths including the parameter "imgPath" in your Woodpecker instance)</span>
 </div>
 <div class="sourcecode highlight">
     <pre><code class="html">
@@ -101,8 +102,30 @@
 </div>
 <BR/>
 
-<h4>Code</h4>
+<h4>Code HTML</h4>
+<div class="sourcecode">
+        <pre><code class="html javascript">
+            &lt;div id="<span class="value">woodpeckerGraphContainer</span>"&gt;&lt;/div&gt;
+            &lt;div id="<span class="value">woodpeckerLegendContainer</span>"&gt;&lt;/div&gt;
+        </code></pre>
+</div>
+<BR/>
 
+<h4>Code CSS</h4>
+<div class="sourcecode">
+        <pre><code class="html javascript">
+            #<span class="value">woodpeckerGraphContainer</span> {
+                <span class="attr">height</span>: 300px;
+            }
+
+            #<span class="value">woodpeckerLegendContainer</span> {
+                <span class="attr">height</span>: 50px;
+            }
+        </code></pre>
+</div>
+<BR/>
+
+<h4>Code Javascript</h4>
 <div class="sourcecode">
         <pre><code class="html javascript">
             function generateData()
@@ -141,8 +164,9 @@
 
             var dataToDisplay = generateData();
     <span class="value">
-            var options = {containerId: "woodpeckerContainer",
-                height: 200,
+            var options = {
+                graphContainerId: "woodpeckerGraphContainer",
+                legendContainerId: "woodpeckerLegendContainer",
                 xAxisLabelText:'Date',
                 yAxisLabelText: 'Values',
                 data:dataToDisplay,
@@ -285,7 +309,10 @@
 
 <footer>
     <hr>
-    <a href="mailto:Vanessa.Maigne@lsce.ipsl.fr?Subject=WoodpeckerObject"><div class="ff-element ff-mail"></div></a>
+    <a href="mailto:Vanessa.Maigne@lsce.ipsl.fr?Subject=WoodpeckerObject">
+        <div class="ff-element ff-mail"></div><div class="ff-text">Vanessa Maigne</div>
+    </a>
+
     <p><a target="_blank" href="http://www.globalcarbonatlas.org/?q=flux_ts">&copy; Global Carbon Atlas 2013</a></p>
 </footer>
 </div>
@@ -561,8 +588,9 @@ function stopDemo()
 //  **********************************************************************
 //  ******************************** GRAPH *******************************
 //  **********************************************************************
-var options = {containerId: "woodpeckerContainer",
-    height: 300,
+var options = {
+    graphContainerId: "woodpeckerGraphContainer",
+    legendContainerId: "woodpeckerLegendContainer",
     xAxisLabelText:'Date',
     yAxisLabelText: 'Values',
     data: jQuery.extend( true, new Array(), dataToDisplay ),

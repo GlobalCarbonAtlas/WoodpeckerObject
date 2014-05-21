@@ -39,9 +39,12 @@
         <h1>Line color on live</h1>
     </div>
 
-    <div id="woodpeckerContainer"></div>
+    <div id="woodpeckerContainer">
+        <div id="woodpeckerGraphContainer"></div>
+        <div id="woodpeckerLegendContainer"></div>
+    </div>
 
-    <div style="position: absolute; left: 147px; top: 411px;">
+    <div style="position: absolute; left: 147px; top: 477px;">
         <svg width="314" height="115">
             <path d="M5,5L5,45L45,45" style="fill: none; stroke: grey; stroke-width: 1.5px;"></path>
             <circle r="5" cy="45" cx="45" style="fill: grey;"></circle>
@@ -49,13 +52,15 @@
         </svg>
     </div>
 
-    <div style="position: absolute; left: 598px; top: 190px;">
+    <div style="position: absolute; left: 598px; top: 208px;">
         <svg width="195" height="65">
             <path d="M82.5,0L82.5,35" style="fill: none; stroke: grey; stroke-width: 1.5px;"></path>
             <circle r="5" cy="35" cx="82.5" style="fill: grey;"></circle>
             <text y="55" x="23" style="fill: grey; font-size: 14px;">Click on the line !</text>
         </svg>
     </div>
+
+    <BR/>
 
     <h4>Code</h4>
 
@@ -98,8 +103,9 @@
         ];
 
 
-        var options = {containerId: "woodpeckerContainer",
-            height: 250,
+        var options = {
+            graphContainerId: "woodpeckerGraphContainer",
+            legendContainerId: "woodpeckerLegendContainer",
             xAxisLabelText:'Date',
             yAxisLabelText: 'Values',
             data:dataToDisplay,
@@ -111,7 +117,7 @@
 
     <footer>
         <hr>
-        <a href="mailto:Vanessa.Maigne@lsce.ipsl.fr?Subject=WoodpeckerObject"><div class="ff-element ff-mail"></div></a>
+        <a href="mailto:Vanessa.Maigne@lsce.ipsl.fr?Subject=WoodpeckerObject"><div class="ff-element ff-mail"></div><div class="ff-text">Vanessa Maigne</div></a>
         <p><a target="_blank" href="http://www.globalcarbonatlas.org/?q=flux_ts">&copy; Global Carbon Atlas 2013</a></p>
     </footer>
 </div>
@@ -157,8 +163,9 @@
         ];
 
 
-        var options = {containerId: "woodpeckerContainer",
-            height: 250,
+        var options = {
+            graphContainerId: "woodpeckerGraphContainer",
+            legendContainerId: "woodpeckerLegendContainer",
             xAxisLabelText:'Date',
             yAxisLabelText: 'Values',
             data:dataToDisplay,

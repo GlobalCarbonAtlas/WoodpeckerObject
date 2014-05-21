@@ -683,9 +683,9 @@ var Woodpecker = Class.create( {
 // **************************************************************
     createOrUpdateLegend : function()
     {
-        var isTwoColumns = 10 < this.data.length;
+        this.isTwoColumns = 10 < this.data.length;
         var gLegends = d3.select( 'g.legends' ).attr( 'transform', 'translate(' + (this.graphMargin.left + this.axisTextDimension.yAxisWidth + 15) + ', 0 )' );
-        if( isTwoColumns )
+        if( this.isTwoColumns )
             gLegends = d3.select( 'g.legends' ).attr( 'transform', 'translate(' + (this.graphMargin.left + this.axisTextDimension.yAxisWidth) + ',' + 0 + ')' );
 
         var legends = gLegends.selectAll( '.legend' ).data( this.data );
@@ -736,13 +736,13 @@ var Woodpecker = Class.create( {
         legends.exit().remove();
 
         // Update text when remove legend
-        legends.select( 'text' ).text( function( d, i )
+        legends.select( 'text' ).text( jQuery.proxy( function( d, i )
         {
-            if( isTwoColumns )
+            if( this.isTwoColumns )
                 return d.shortLabel ? d.shortLabel : d.label;
             else
                 return d.label;
-        } );
+        }, this ) );
 
         // Update color when remove legend
         legends.select( 'circle' )
@@ -773,7 +773,7 @@ var Woodpecker = Class.create( {
         var xpos = 5;
         legends.attr( 'transform', jQuery.proxy( function( d, i )
         {
-            if( isTwoColumns && 0 != i % 2 )
+            if( this.isTwoColumns && 0 != i % 2 )
             {
                 ypos -= 20;
                 xpos = this.plotSize.width / 2 + 10;
@@ -1405,8 +1405,8 @@ var Woodpecker = Class.create( {
         $( "#WPdivToCloneToExportGraph svg g.legends" ).attr( "transform", "translate(" + transformValue[0] + "," + ($( "#WPdivToExportGraph" ).height() - 20) + ")" );
         $( "#WPdivToCloneToExportGraph .removeLegend" ).remove();
 
-        var fontSize = getStyleSheetPropertyValue( "#WPgraphSvg text, #divToGetCss", "fontSize" );
-        var fontWeight = getStyleSheetPropertyValue( "#WPgraphSvg text, #divToGetCss", "fontWeight" );
+        var fontSize = getStyleSheetPropertyValue( "#WPgraphSvg text, #WPgraphLegendSvg text, #divToGetCss", "fontSize" );
+        var fontWeight = getStyleSheetPropertyValue( "#WPgraphSvg text, #WPgraphLegendSvg text, #divToGetCss", "fontWeight" );
         if( null == fontSize )
             fontSize = "15px";
         if( null == fontWeight )
@@ -1439,8 +1439,9 @@ var Woodpecker = Class.create( {
             } );
             footerRectWidth += 20 * (context.imagesToInsertInExport.images.length - 1);
 
+            var footerTop = context.isTwoColumns ? context.plotSize.height + $( "#WPdivToExportGraphLegend" ).height() + 50 : context.plotSize.height + $( "#WPdivToExportGraphLegend" ).height() - 30;
             var footerExport = d3.select( "#WPdivToCloneToExportGraph svg" ).append( "g" )
-                    .attr( 'transform', 'translate(' + (context.plotSize.width - footerRectWidth + 50) + ',' + (context.plotSize.height + 20 + $( ".legend" ).size() * 20 / 2) + ')' );
+                    .attr( 'transform', 'translate(' + (context.plotSize.width - footerRectWidth + 50) + ',' + footerTop + ')' );
 
             if( context.imagesToInsertInExport.displayBackground )
             {
@@ -1624,8 +1625,8 @@ function getTextWidth( wrapperId, text )
     var timeForId = new Date().getTime();
     var divTextToGetWidthId = "WPDivToGetWidth_" + timeForId;
     $( "#" + divTextToGetWidthId ).remove();
-    var fontSize = getStyleSheetPropertyValue( "#WPgraphSvg text, #divToGetCss", "fontSize" );
-    var fontWeight = getStyleSheetPropertyValue( "#WPgraphSvg text, #divToGetCss", "fontWeight" );
+    var fontSize = getStyleSheetPropertyValue( "#WPgraphSvg text, #WPgraphLegendSvg text, #divToGetCss", "fontSize" );
+    var fontWeight = getStyleSheetPropertyValue( "#WPgraphSvg text, #WPgraphLegendSvg text, #divToGetCss", "fontWeight" );
     if( null == fontSize )
         fontSize = "15px";
     if( null == fontWeight )

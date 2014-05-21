@@ -39,7 +39,10 @@
         <h1>Add data in a "empty" chart</h1>
     </div>
 
-    <div id="woodpeckerContainer"></div>
+    <div id="woodpeckerContainer">
+        <div id="woodpeckerGraphContainer"></div>
+        <div id="woodpeckerLegendContainer"></div>
+    </div>
 
     <h4>Code</h4>
 
@@ -59,8 +62,8 @@
         };
 
         var options = {
-            containerId: "woodpeckerContainer",
-            height: 250,
+            graphContainerId: "woodpeckerGraphContainer",
+            legendContainerId: "woodpeckerLegendContainer",
             xAxisLabelText:'Date',
             yAxisLabelText: 'Values',
             data:[],
@@ -70,13 +73,13 @@
         };
 
         var graph = new Woodpecker( options );
-        graph.addData( dataToAdd );
+        <span class="value">graph.addData( dataToAdd );</span>
         </code></pre>
     </div>
 
     <footer>
         <hr>
-        <a href="mailto:Vanessa.Maigne@lsce.ipsl.fr?Subject=WoodpeckerObject"><div class="ff-element ff-mail"></div></a>
+        <a href="mailto:Vanessa.Maigne@lsce.ipsl.fr?Subject=WoodpeckerObject"><div class="ff-element ff-mail"></div><div class="ff-text">Vanessa Maigne</div></a>
         <p><a target="_blank" href="http://www.globalcarbonatlas.org/?q=flux_ts">&copy; Global Carbon Atlas 2013</a></p>
     </footer>
 </div>
@@ -99,8 +102,8 @@
         };
 
         var options = {
-            containerId: "woodpeckerContainer",
-            height: 250,
+            graphContainerId: "woodpeckerGraphContainer",
+            legendContainerId: "woodpeckerLegendContainer",
             xAxisLabelText:'Date',
             yAxisLabelText: 'Values',
             data:[],
