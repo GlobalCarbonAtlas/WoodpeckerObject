@@ -35,6 +35,8 @@
 <div id="woodpeckerGraphContainer"></div>
 <div id="woodpeckerLegendContainer"></div>
 
+<BR/>
+
 <div class="page-header sub">
     <h2>Setup in php</h2>
     <span class="comment">(warning : your file must be in the same directory as the Woodpecker directory, otherwise use the HTML setup)</span>
@@ -237,6 +239,11 @@
                 <h4><a role="button" href="examples/domains.html" class="btn btn-default">view »</a>&nbsp;&nbsp;Axis domains</h4>
 
                 <p>Init axis domains.</p>
+            </div>
+            <div class="col-md-4">
+                <h4><a role="button" href="examples/legend.html" class="btn btn-default">view »</a>&nbsp;&nbsp;Legend position</h4>
+
+                <p>Use the css to place the legend.</p>
             </div>
         </div>
     </div>

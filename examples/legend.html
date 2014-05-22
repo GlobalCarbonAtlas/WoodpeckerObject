@@ -1,0 +1,158 @@
+<HTML>
+<HEAD>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>GCA Time Series examples</title>
+    <link rel="icon" href="../img/globe.png" type="image/png">
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <link rel="stylesheet" type="text/css" href="../Woodpecker/resources/Tree.css">
+    <link rel="stylesheet" type="text/css" href="../Woodpecker/resources/farbtastic/farbtastic.css">
+    <link rel="stylesheet" type="text/css" href="../Woodpecker/resources/contextmenu.css">
+    <link rel="stylesheet" type="text/css" href="../Woodpecker/resources/d3.v3/d3.css">
+    <link rel="stylesheet" type="text/css" href="../Woodpecker/Woodpecker.css">
+
+    <style type="text/css">
+        #woodpeckerGraphContainerCss {
+            height: 300px;
+            width: 1000px;
+            background-color: #428BCA;
+        }
+
+        #woodpeckerLegendContainerCss {
+            height: 50px;
+            width: 250px;
+            background-color: #339933;
+            position: absolute;
+            top:200px;
+            left: 939px;
+        }
+    </style>
+
+    <script type="text/javascript" src="../Woodpecker/resources/library/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="../Woodpecker/resources/library/jquery.class.js"></script>
+    <script type="text/javascript" src="../Woodpecker/resources/library/jquery-ui-1.10.2.custom.min.js"></script>
+    <script type="text/javascript" src="../Woodpecker/resources/library/jshashtable-2.1.js"></script>
+    <script type="text/javascript" src="../Woodpecker/resources/d3.v3/d3.v3.js"></script>
+    <script type="text/javascript" src="../Woodpecker/resources/Tree.js"></script>
+    <script type="text/javascript" src="../Woodpecker/resources/farbtastic/farbtastic.js"></script>
+    <script type="text/javascript" src="../Woodpecker/resources/contextmenu.js"></script>
+    <script type="text/javascript" src="../Woodpecker/Woodpecker.js"></script>
+
+    <script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+</HEAD>
+
+<BODY>
+
+<div class="container">
+
+    <div class="nav">
+        <a href="../examples.php">Home</a>
+    </div>
+
+    <div class="page-header title">
+        <h1>Legend position</h1>
+    </div>
+
+    <div id="woodpeckerGraphContainerCss"></div>
+    <div id="woodpeckerLegendContainerCss"></div>
+
+    <BR/>
+    <h4>Code HTML</h4>
+    <div class="sourcecode">
+        <pre><code class="html javascript">
+            &lt;div id="<span class="value">woodpeckerGraphContainerCss</span>"&gt;&lt;/div&gt;
+            &lt;div id="<span class="value">woodpeckerLegendContainerCss</span>"&gt;&lt;/div&gt;
+        </code></pre>
+    </div>
+
+    <h4>Code CSS</h4>
+    <div class="sourcecode">
+        <pre><code class="html javascript">
+            #<span class="value">woodpeckerGraphContainerCss</span> {
+                <span class="attr">height</span>: 300px;
+                <span class="attr">width</span>: 1000px;
+                background-color: #428BCA;
+            }
+
+            #<span class="value">woodpeckerLegendContainerCss</span> {
+                <span class="attr">height</span>: 50px;
+                <span class="attr">width</span>: 250px;
+                <span class="attr">position</span>: absolute;
+                <span class="attr">top</span>:200px;
+                <span class="attr">left</span>: 939px;
+                background-color: #339933;
+            }
+        </code></pre>
+    </div>
+
+    <h4>Code</h4>
+
+    <div class="sourcecode">
+        <pre><code class="html javascript">
+            var dataToDisplay = [{
+            data:
+                [
+                    [new Date( 1390658594684 ),10],
+                    [new Date( 1390745019861 ),22],
+                    [new Date( 1390831429424 ),5],
+                    [new Date( 1390917836977 ),15],
+                    [new Date( 1391004254838 ),1],
+                ],
+            label:"Simple line"
+            }];
+
+            var options = {
+                graphContainerId: "woodpeckerGraphContainerCss",
+                legendContainerId: "woodpeckerLegendContainerCss",
+                xAxisLabelText:'Date',
+                yAxisLabelText: 'Values',
+                data:dataToDisplay,
+                displayIconsMenu: true,
+                imgPath:"../Woodpecker/img"
+            };
+
+            new Woodpecker( options );
+        </code></pre>
+    </div>
+
+    <footer>
+        <hr>
+        <a href="mailto:Vanessa.Maigne@lsce.ipsl.fr?Subject=WoodpeckerObject"><div class="ff-element ff-mail"></div><div class="ff-text">Vanessa Maigne</div></a>
+        <p><a target="_blank" href="http://www.globalcarbonatlas.org/?q=flux_ts">&copy; Global Carbon Atlas 2013</a></p>
+    </footer>
+</div>
+
+<script type="text/javascript">
+
+    $( document ).ready( function ()
+    {
+        var dataToDisplay = [
+            {data:
+                    [
+                        [new Date( 1390658594684 ),10],
+                        [new Date( 1390745019861 ),22],
+                        [new Date( 1390831429424 ),5],
+                        [new Date( 1390917836977 ),15],
+                        [new Date( 1391004254838 ),1],
+                    ], label:"Simple line"}
+        ];
+
+        var options = {
+            graphContainerId: "woodpeckerGraphContainerCss",
+            legendContainerId: "woodpeckerLegendContainerCss",
+            xAxisLabelText:'Date',
+            yAxisLabelText: 'Values',
+            data:dataToDisplay,
+            displayIconsMenu: true,
+            imgPath:"../Woodpecker/img"};
+
+        new Woodpecker( options );
+    } );
+
+</script>
+
+</BODY>
+</HTML>
