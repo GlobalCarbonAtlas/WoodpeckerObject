@@ -2,7 +2,7 @@
 <HEAD>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <title>GCA Time Series examples</title>
-    <link rel="icon" href="Woodpecker/img/globe.png" type="image/png">
+    <link rel="icon" href="img/globe.png" type="image/png">
 
     <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
@@ -22,7 +22,7 @@
         <small>D3-based reusable chart library for chart (time series by default)</small>
     </h1>
     <div id="link">
-        <a target="_blank" href="https://github.com/GlobalCarbonAtlas/WoodpeckerObject"><img class="git-icon" src="examples/GitHub-64px.png"></a>
+        <a target="_blank" href="https://github.com/GlobalCarbonAtlas/WoodpeckerObject"><img class="git-icon" src="img/GitHub-64px.png"></a>
     </div>
     <div class="api"><a href="API.html" target="_blank">See the API</a></div>
     <div class="clearfix"></div>
