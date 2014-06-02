@@ -74,7 +74,8 @@
     <h2>Parameters</h2>
 
     <ul>
-        <li><span class="parameter">containerId :</span> identifier of the div containing the graph <span class="comment">(mandatory)</span></li>
+        <li><span class="parameter">graphContainerId :</span> identifier of the div containing the graph <span class="comment">(mandatory)</span></li>
+        <li><span class="parameter">legendContainerId :</span> identifier of the div containing the legends <span class="comment">(mandatory)</span></li>
         <li><span class="parameter">data :</span> data to display <span class="default">(default value = false)</span></li>
         <li><span class="parameter">toolsContainer :</span> container div for the tools like colorPicker, the interpolation, the axis and the exports <span class="default">(default value = "body")</span>
         </li>
@@ -101,12 +102,6 @@
         <li><span class="parameter">yDomain :</span> values domain for Y axis. If no setted domain, it will be adjusted in function of the dataset <span class="default">(default value = false)</span>
         </li>
         <li><span class="parameter">isLinearXAxis :</span> boolean to state if X axis is linear (d3.scale.linear()) or time (d3.time.scale()) <span class="default">(default value = false for time axis)</span>
-        </li>
-        <li><span class="parameter">svgWidth :</span> width of the svg chart <span
-                class="default">(default value = width of container (containerId) if exists, "500px" otherwise)</span>
-        </li>
-        <li><span class="parameter">svgHeight :</span> height of the svg chart <span
-                class="default">(default value = height of container (containerId) if > 260, "400px" otherwise)</span>
         </li>
         <li><span class="parameter">interpolation :</span> interpolation of the data <span class="default">(default value = "linear")</span></li>
     </ul>
@@ -591,7 +586,7 @@
 
 <footer>
     <a href="mailto:Vanessa.Maigne@lsce.ipsl.fr?Subject=WoodpeckerObject">
-        <div class="ff-element ff-mail"></div>
+        <div class="ff-element ff-mail"></div><div class="ff-text">Vanessa Maigne</div>
     </a>
 
     <p><a target="_blank" href="http://www.globalcarbonatlas.org/?q=flux_ts">&copy; Global Carbon Atlas 2013</a></p>
