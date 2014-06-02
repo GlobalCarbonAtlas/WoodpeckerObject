@@ -175,3 +175,19 @@ rect.zoom.y {
 #WPsvg-form {
     display: none;
 }
+
+foreignObject body {
+    background-color: transparent;
+}
+
+.legendText {
+    overflow: auto;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-top: 4px;
+}
+
+
+#legends {
+    /*width: 80px !important;*/
+}

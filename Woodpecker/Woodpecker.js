@@ -694,10 +694,15 @@ var Woodpecker = Class.create( {
         {
             return "WPLegendCircle" + i;
         }, this ) );
-        legendsEnter.append( 'text' )
-            .attr( 'text-anchor', 'start' )
-            .attr( 'dy', '.32em' )
-            .attr( 'dx', '8' )
+        legendsEnter.append( 'foreignObject' )
+            .attr('x', 10)
+            .attr('y', -11)
+            .attr('width', this.legendSvgWidth - 40)
+            .attr('height', 20)
+            .attr('requiredExtensions','http://www.w3.org/1999/xhtml')
+//            .attr( 'text-anchor', 'start' )
+//            .attr( 'dy', '.32em' )
+//            .attr( 'dx', '8' )
             .on( 'click', jQuery.proxy( function( d, i )
         {
             this.onClickLegend( d );
@@ -733,12 +738,16 @@ var Woodpecker = Class.create( {
         legends.exit().remove();
 
         // Update text when remove legend
-        legends.select( 'text' ).text( jQuery.proxy( function( d, i )
+        legends.select( 'foreignObject' )
+            .append("xhtml:body")
+            .attr( "xmlns", "http://www.w3.org/1999/xhtml" )
+            .html( jQuery.proxy( function( d, i )
         {
-            if( this.isTwoColumns )
-                return d.shortLabel ? d.shortLabel : d.label;
-            else
-                return d.label;
+            var textWidth = getTextWidth( this.graphContainerId, d.label );
+            var legendWidth = this.legendSvgWidth - 31;
+            var titleLabel = (textWidth > legendWidth ? d.label : "");
+
+            return "<div class='legendText' title='"+titleLabel+"'>"+d.label+"</div>";
         }, this ) );
 
         // Update color when remove legend
@@ -790,7 +799,8 @@ var Woodpecker = Class.create( {
         d3.select( "#" + this.legendContainerId ).select( "svg" )
             .attr( "viewBox", "0 0 " + this.legendSvgWidth + " " + newHeight );
         // legend
-//        this.legendContainer.height( newHeight );
+        this.legendContainer.height( newHeight );
+        this.legendContainer.draggable();
     },
 
     onMouseOverOrOutLegend: function( d, isOver )
@@ -1398,8 +1408,7 @@ var Woodpecker = Class.create( {
         $( "#WPdivToCloneToExportGraph" ).empty();
         $( "#WPdivToCloneToExportGraph" ).append( $( "#WPdivToExportGraph svg" ).clone() );
         $( "#WPdivToCloneToExportGraph svg g.wrap" ).append( $( "#WPdivToExportGraphLegend svg g.legends" ).clone() );
-        var transformValue = d3.select( "#WPgraphLegendSvg g.legends" ).attr( "transform" ).split( "(" )[1].split( "," );
-        $( "#WPdivToCloneToExportGraph svg g.legends" ).attr( "transform", "translate(" + transformValue[0] + "," + ($( "#WPdivToExportGraph" ).height() - 20) + ")" );
+        $( "#WPdivToCloneToExportGraph svg g.legends" ).attr( "transform", "translate(0," + ($( "#WPdivToExportGraph" ).height() - 20) + ")" );
         $( "#WPdivToCloneToExportGraph .removeLegend" ).remove();
 
         var fontSize = getStyleSheetPropertyValue( "#WPgraphSvg text, #WPgraphLegendSvg text, #divToGetCss", "fontSize" );

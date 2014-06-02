@@ -2,7 +2,7 @@
 <HEAD>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <title>GCA Time Series examples</title>
-    <link rel="icon" href="img/globe.png" type="image/png">
+    <link rel="icon" href="Woodpecker/img/globe.png" type="image/png">
 
     <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
