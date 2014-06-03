@@ -28,9 +28,16 @@ rect.zoom.y {
 }
 
 /* !! WARNING !! Do not change theses labels and their order because of their use in the getStyleSheetPropertyValue function */
-#WPgraphSvg text, #WPgraphLegendSvg text, #divToGetCss {
+#WPgraphSvg text, #divToGetCss {
     font-weight: bold;
     font-size: 15px;
+}
+
+/* !! WARNING !! Do not change theses labels and their order because of their use in the getStyleSheetPropertyValue function */
+.legendText, #divToGetCss {
+    font: 15px sans-serif;
+    color: #000;
+    font-weight: bold;
 }
 
 #WPgraphSvg .lines path {
@@ -181,13 +188,8 @@ foreignObject body {
 }
 
 .legendText {
-    overflow: auto;
+    overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    margin-top: 4px;
-}
-
-
-#legends {
-    /*width: 80px !important;*/
+    margin-top: 2px;
 }

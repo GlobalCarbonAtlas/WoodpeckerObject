@@ -59,6 +59,7 @@ var Woodpecker = Class.create( {
         };
 
         // Variables
+        this.numberOfRows = 10;
         this.zIndex = 0;
         this.dotRadius = 2.5;
         this.isFirefox = /firefox/i.test( window.navigator.userAgent.toLowerCase() );
@@ -132,13 +133,13 @@ var Woodpecker = Class.create( {
     getEnableDataSeries: function()
     {
         return this.data.filter(
-            function( d )
-            {
-                return !d.disabled
-            } ).map( function( d )
-            {
-                return d.data;
-            } );
+                function( d )
+                {
+                    return !d.disabled
+                } ).map( function( d )
+        {
+            return d.data;
+        } );
     },
 
     addData: function( data, color )
@@ -185,71 +186,73 @@ var Woodpecker = Class.create( {
     createGraphSVG: function()
     {
         this.vis = d3.select( "#" + this.graphContainerId )
-            .append( "div" ).attr( "id", "WPdivToExportGraph" )
-            .append( 'svg' )
-            .attr( "version", "1.1" )
-            .attr( "xml:space", "preserve" )
-            .attr( "xmlns", "http://www.w3.org/2000/svg" )
-            .attr( "xmlns:xmlns:xlink", "http://www.w3.org/1999/xlink" )
-            .attr( "viewBox", "0 0 " + this.graphSvgWidth + " " + this.graphSvgHeight )
-            .attr( "preserveAspectRatio", "xMinYMin" )
-            .attr( "id", "WPgraphSvg" )
-            .attr( "pointer-events", "all" )
-            .append( "g" )
-            .attr( 'class', 'wrap' );
+                .append( "div" ).attr( "id", "WPdivToExportGraph" )
+                .append( 'svg' )
+                .attr( "version", "1.1" )
+                .attr( "xml:space", "preserve" )
+                .attr( "xmlns", "http://www.w3.org/2000/svg" )
+                .attr( "xmlns:xmlns:xlink", "http://www.w3.org/1999/xlink" )
+                .attr( "viewBox", "0 0 " + this.graphSvgWidth + " " + this.graphSvgHeight )
+                .attr( "preserveAspectRatio", "xMinYMin" )
+                .attr( "id", "WPgraphSvg" )
+                .attr( "pointer-events", "all" )
+                .append( "g" )
+                .attr( 'class', 'wrap' );
 
         // ClipPath to block zoom and pan in one zone
         this.vis.append( "defs" ).append( "clipPath" )
-            .attr( "id", "clip" )
-            .append( "rect" )
-            .attr( "id", "clip-rect" )
-            .attr( "width", this.plotSize.width )
-            .attr( "height", this.plotSize.height );
+                .attr( "id", "clip" )
+                .append( "rect" )
+                .attr( "id", "clip-rect" )
+                .attr( "width", this.plotSize.width )
+                .attr( "height", this.plotSize.height );
 
         // Zone to plot and manage events
         this.plot = this.vis.append( "g" )
-            .attr( "transform", 'translate(' + (this.graphMargin.left + this.axisTextDimension.yAxisWidth) + ',' + this.graphMargin.top + ')' );
+                .attr( "class", 'gGraph' )
+                .attr( "transform", 'translate(' + (this.graphMargin.left + this.axisTextDimension.yAxisWidth) + ',' + this.graphMargin.top + ')' );
 
         this.plot.append( "rect" )
-            .attr( "width", this.plotSize.width )
-            .attr( "height", this.plotSize.height )
-            .attr( "style", "fill:white" );
+                .attr( "width", this.plotSize.width )
+                .attr( "height", this.plotSize.height )
+                .attr( "style", "fill:white" );
 
         // Axis and graph
-        this.ticksX = this.plot.append( 'g' ).attr( 'class', 'x axis' );
-        this.ticksY = this.plot.append( 'g' ).attr( 'class', 'y axis' );
+        this.plot.append( 'g' ).attr( 'class', 'x axis' );
+        this.plot.append( 'g' ).attr( 'class', 'y axis' );
         this.plot.append( 'g' )
-            .attr( "clip-path", "url(#clip)" )
-            .attr( 'class', 'lines' );
+                .attr( "clip-path", "url(#clip)" )
+                .attr( 'class', 'lines' );
 
         // Zoom on axis
         this.zoomRects = this.vis.append( "g" )
-            .attr( "transform", 'translate(' + (this.graphMargin.left + this.axisTextDimension.yAxisWidth) + ',' + this.graphMargin.top + ')' );
+                .attr( "class", 'gZooms' )
+                .attr( "transform", 'translate(' + (this.graphMargin.left + this.axisTextDimension.yAxisWidth) + ',' + this.graphMargin.top + ')' );
 
         this.zoomRects.append( "svg:rect" )
-            .attr( "class", "zoom x box" )
-            .attr( "width", this.plotSize.width )
-            .attr( "height", this.axisTextDimension.xAxisHeight + "px" )
-            .attr( "transform", "translate(" + 0 + "," + this.plotSize.height + ")" )
-            .style( "visibility", "hidden" )
-            .attr( "pointer-events", "all" );
+                .attr( "class", "zoom x box" )
+                .attr( "width", this.plotSize.width )
+                .attr( "height", this.axisTextDimension.xAxisHeight + "px" )
+                .attr( "transform", "translate(" + 0 + "," + this.plotSize.height + ")" )
+                .style( "visibility", "hidden" )
+                .attr( "pointer-events", "all" );
         this.zoomRects.append( "svg:rect" )
-            .attr( "class", "zoom y box" )
-            .attr( "width", this.axisTextDimension.yAxisWidth + "px" )
-            .attr( "height", this.plotSize.height )
-            .attr( "transform", "translate(" + (-this.axisTextDimension.yAxisWidth) + ", 0 )" )
-            .style( "visibility", "hidden" )
-            .attr( "pointer-events", "all" );
+                .attr( "class", "zoom y box" )
+                .attr( "width", this.axisTextDimension.yAxisWidth + "px" )
+                .attr( "height", this.plotSize.height )
+                .attr( "transform", "translate(" + (-this.axisTextDimension.yAxisWidth) + ", 0 )" )
+                .style( "visibility", "hidden" )
+                .attr( "pointer-events", "all" );
     },
 
     createLegendSVG: function()
     {
         d3.select( "#" + this.legendContainerId )
-            .append( "div" ).attr( "id", "WPdivToExportGraphLegend" )
-            .append( 'svg' )
-            .attr( "viewBox", "0 0 " + this.legendSvgWidth + " " + this.legendSvgHeight )
-            .attr( "id", "WPgraphLegendSvg" )
-            .append( 'g' ).attr( 'class', 'legends' );
+                .append( "div" ).attr( "id", "WPdivToExportGraphLegend" )
+                .append( 'svg' )
+                .attr( "viewBox", "0 0 " + this.legendSvgWidth + " " + this.legendSvgHeight )
+                .attr( "id", "WPgraphLegendSvg" )
+                .append( 'g' ).attr( 'class', 'legends' );
     },
 
     update: function()
@@ -306,14 +309,14 @@ var Woodpecker = Class.create( {
         var xLabel = this.getAxisLabelInArrayWithExponent( this.xAxisLabelText );
 
         g.select( '.x.axis' ).append( 'text' )
-            .attr( 'class', 'axislabel' )
-            .attr( 'text-anchor', 'middle' )
-            .attr( 'x', this.x.range()[1] / 2 + 35 )
-            .attr( 'y', 15 + this.axisTextDimension.xAxisHeight / 2 );
+                .attr( 'class', 'axislabel' )
+                .attr( 'text-anchor', 'middle' )
+                .attr( 'x', this.x.range()[1] / 2 + 35 )
+                .attr( 'y', 15 + this.axisTextDimension.xAxisHeight / 2 );
 
         var xAxisLabel = g.select( '.x.axis text.axislabel' ).selectAll( 'tspan' ).data( xLabel );
         xAxisLabel.enter().append( 'tspan' )
-            .attr( 'dy', jQuery.proxy( function( d )
+                .attr( 'dy', jQuery.proxy( function( d )
         {
             if( d.isExponent )
                 return -5;
@@ -327,14 +330,14 @@ var Woodpecker = Class.create( {
         } );
 
         g.select( '.x.axis' )
-            .attr( 'transform', 'translate(0,' + this.y.range()[0] + ')' )
-            .call( this.xAxis )
-            .selectAll( 'line' )
-            .filter( function( d )
-            {
-                return !d
-            } )
-            .classed( 'zero', true );
+                .attr( 'transform', 'translate(0,' + this.y.range()[0] + ')' )
+                .call( this.xAxis )
+                .selectAll( 'line' )
+                .filter( function( d )
+        {
+            return !d
+        } )
+                .classed( 'zero', true );
 
         // Y axis
         //this.yAxisLabelText = "m2/h/m33/g/m2/m2/d";
@@ -342,14 +345,14 @@ var Woodpecker = Class.create( {
         var yLabel = this.getAxisLabelInArrayWithExponent( this.yAxisLabelText );
 
         g.select( '.y.axis' ).append( 'text' )
-            .attr( 'class', 'axislabel' )
-            .attr( 'transform', 'rotate(-90)' )
-            .attr( 'y', - 20 - this.axisTextDimension.yAxisWidth / 2 )
-            .attr( 'x', -this.y.range()[0] / 2 - 45 );
+                .attr( 'class', 'axislabel' )
+                .attr( 'transform', 'rotate(-90)' )
+                .attr( 'y', - 20 - this.axisTextDimension.yAxisWidth / 2 )
+                .attr( 'x', -this.y.range()[0] / 2 - 45 );
 
         var yAxisLabel = g.select( '.y.axis text.axislabel' ).selectAll( 'tspan' ).data( yLabel );
         yAxisLabel.enter().append( 'tspan' )
-            .attr( 'dy', jQuery.proxy( function( d )
+                .attr( 'dy', jQuery.proxy( function( d )
         {
             if( d.isExponent )
                 return -5;
@@ -363,13 +366,13 @@ var Woodpecker = Class.create( {
         } );
 
         g.select( '.y.axis' )
-            .call( this.yAxis )
-            .selectAll( 'line' )
-            .filter( function( d )
-            {
-                return !d
-            } )
-            .classed( 'zero', true );
+                .call( this.yAxis )
+                .selectAll( 'line' )
+                .filter( function( d )
+        {
+            return !d
+        } )
+                .classed( 'zero', true );
 
         g.selectAll( '.y.axis g text' ).attr( "x", -5 );
         g.selectAll( '.x.axis g text' ).attr( "y", 5 );
@@ -504,96 +507,96 @@ var Woodpecker = Class.create( {
         var linesEnter = lines.enter().append( 'g' ).attr( 'class', 'line' );
 
         d3.transition( lines )
-            .style( 'stroke-opacity', 1 )
-            .style( 'fill-opacity', .5 );
+                .style( 'stroke-opacity', 1 )
+                .style( 'fill-opacity', .5 );
         lines.attr( 'class', function( d, i )
         {
             return 'line line-' + i
         } )
-            .classed( 'hover', function( d )
-            {
-                return d.hover
-            } )
-            .classed( 'notHover', jQuery.proxy( function( d )
+                .classed( 'hover', function( d )
+        {
+            return d.hover
+        } )
+                .classed( 'notHover', jQuery.proxy( function( d )
         {
             return this.isOverOneLegend;
         }, this ) )
-            .style( 'fill', jQuery.proxy( function( d, i )
+                .style( 'fill', jQuery.proxy( function( d, i )
         {
             if( !d.color )
                 d.color = this.getFreeColor( i );
             return d.color
         }, this ) )
-            .style( 'stroke', jQuery.proxy( function( d, i )
+                .style( 'stroke', jQuery.proxy( function( d, i )
         {
             if( !d.color )
                 d.color = this.getFreeColor( i );
             return d.color
         }, this ) )
-            .style( 'stroke-width', jQuery.proxy( function( d, i )
+                .style( 'stroke-width', jQuery.proxy( function( d, i )
         {
             return d.width ? d.width : "2px";
         }, this ) )
-            .style( 'stroke-dasharray', jQuery.proxy( function( d, i )
+                .style( 'stroke-dasharray', jQuery.proxy( function( d, i )
         {
             return d.dash ? d.dash : 1;
         }, this ) )
-            .on( 'click', jQuery.proxy( function( d, i )
+                .on( 'click', jQuery.proxy( function( d, i )
         {
             this.onClickLine( i, d );
         }, this ) );
         d3.transition( lines.exit() )
-            .style( 'stroke-opacity', 1e-6 )
-            .style( 'fill-opacity', 1e-6 )
-            .remove();
+                .style( 'stroke-opacity', 1e-6 )
+                .style( 'fill-opacity', 1e-6 )
+                .remove();
 
         var paths = lines.selectAll( 'path' )
-            .data( function( d, i )
-            {
-                return [d.data]
-            } );
+                .data( function( d, i )
+        {
+            return [d.data]
+        } );
         paths.enter().append( 'path' )
-            .attr( 'd', d3.svg.line()
-            .defined( function( d )
-            {
-                return !isNaN( d[1] );
-            } )
-            .x( jQuery.proxy( function( d )
+                .attr( 'd', d3.svg.line()
+                .defined( function( d )
+        {
+            return !isNaN( d[1] );
+        } )
+                .x( jQuery.proxy( function( d )
         {
             return this.x( d[0] )
         }, this ) )
-            .y( jQuery.proxy( function( d )
+                .y( jQuery.proxy( function( d )
         {
             return this.y( d[1] )
         }, this ) ) );
         paths.exit().remove();
 
         d3.transition( paths )
-            .attr( 'd', d3.svg.line()
-            .defined( function( d )
-            {
-                return !isNaN( d[1] );
-            } )
-            .interpolate( this.interpolation )
-            .x( jQuery.proxy( function( d )
+                .attr( 'd', d3.svg.line()
+                .defined( function( d )
+        {
+            return !isNaN( d[1] );
+        } )
+                .interpolate( this.interpolation )
+                .x( jQuery.proxy( function( d )
         {
             return this.x( d[0] )
         }, this ) )
-            .y( jQuery.proxy( function( d )
+                .y( jQuery.proxy( function( d )
         {
             return this.y( d[1] )
         }, this ) ) );
 
         var points = lines.selectAll( 'circle.point' )
-            .data(
-            function( d )
-            {
-                return d.data
-            } );
+                .data(
+                function( d )
+                {
+                    return d.data
+                } );
         points.enter().append( 'circle' )
-            .append( "title" )
-            .attr( "class", "titleClass" )
-            .text( jQuery.proxy( function( d )
+                .append( "title" )
+                .attr( "class", "titleClass" )
+                .text( jQuery.proxy( function( d )
         {
             if( this.isLinearXAxis )
                 return  d[0].toFixed( 5 ) + ", " + d[1].toFixed( 5 );
@@ -610,21 +613,21 @@ var Woodpecker = Class.create( {
         } );
 
         d3.transition( points )
-            .attr( 'cx', jQuery.proxy( function( d )
+                .attr( 'cx', jQuery.proxy( function( d )
         {
             return this.x( d[0] )
         }, this ) )
-            .attr( 'cy', jQuery.proxy( function( d )
+                .attr( 'cy', jQuery.proxy( function( d )
         {
             return this.y( d[1] )
         }, this ) )
-            .attr( 'r', function( d )
-            {
-                if( !isNaN( d[1] ) )
-                    return dotRadius;
-                else
-                    return 0;
-            } );
+                .attr( 'r', function( d )
+        {
+            if( !isNaN( d[1] ) )
+                return dotRadius;
+            else
+                return 0;
+        } );
     },
 
     removeLine: function( i, callback )
@@ -683,31 +686,30 @@ var Woodpecker = Class.create( {
 // **************************************************************
     createOrUpdateLegend : function()
     {
-        this.isTwoColumns = 10 < this.data.length;
+        this.isTwoColumns = this.numberOfRows < this.data.length;
         var gLegends = d3.select( 'g.legends' );
         var legends = gLegends.selectAll( '.legend' ).data( this.data );
         var legendsEnter = legends.enter().append( 'g' ).attr( 'class', 'legend' );
 
         legendsEnter.append( 'circle' )
-            .attr( 'r', 5 )
-            .attr( "id", jQuery.proxy( function( d, i )
+                .attr( 'r', 5 )
+                .attr( "id", jQuery.proxy( function( d, i )
         {
             return "WPLegendCircle" + i;
         }, this ) );
+        // We need to create the xhtml:body here because of Chrome !!
         legendsEnter.append( 'foreignObject' )
-            .attr('x', 10)
-            .attr('y', -11)
-            .attr('width', this.legendSvgWidth - 40)
-            .attr('height', 20)
-            .attr('requiredExtensions','http://www.w3.org/1999/xhtml')
-//            .attr( 'text-anchor', 'start' )
-//            .attr( 'dy', '.32em' )
-//            .attr( 'dx', '8' )
-            .on( 'click', jQuery.proxy( function( d, i )
+                .attr( 'x', 10 )
+                .attr( 'y', -11 )
+                .attr( 'width', this.legendSvgWidth - 40 )
+                .attr( 'height', 20 )
+                .append( "xhtml:body" )
+                .html( '<div class="legendText"></div>' )
+                .on( 'click', jQuery.proxy( function( d, i )
         {
             this.onClickLegend( d );
         }, this ) )
-            .on( 'dblclick', jQuery.proxy( function( d, i )
+                .on( 'dblclick', jQuery.proxy( function( d, i )
         {
             this.onDblClickLegend( d );
         }, this ) );
@@ -716,54 +718,59 @@ var Woodpecker = Class.create( {
         {
             this.onMouseOverOrOutLegend( d, true );
         }, this ) )
-            .on( 'mouseout', jQuery.proxy( function( d, i )
+                .on( 'mouseout', jQuery.proxy( function( d, i )
         {
             this.onMouseOverOrOutLegend( d, false );
         }, this ) );
         legendsEnter.append( "svg:image" )
-            .attr( "xlink:href", this.imgPath + "/trash2.svg" )
-            .attr( "width", "20" )
-            .attr( "height", "20" )
-            .attr( "x", "-28" )
-            .attr( "y", "-12" )
-            .attr( "id", jQuery.proxy( function( d, i )
+                .attr( "xlink:href", this.imgPath + "/trash2.svg" )
+                .attr( "width", "20" )
+                .attr( "height", "20" )
+                .attr( "x", "-28" )
+                .attr( "y", "-12" )
+                .attr( "id", jQuery.proxy( function( d, i )
         {
             return "WPLegendImage" + i;
         }, this ) )
-            .attr( "class", "removeLegend" )
-            .on( 'click', jQuery.proxy( function( d, i )
+                .attr( "class", "removeLegend" )
+                .on( 'click', jQuery.proxy( function( d, i )
         {
             this.onDblClickLegend( this.data[i] );
         }, this ) );
         legends.exit().remove();
 
-        // Update text when remove legend
-        legends.select( 'foreignObject' )
-            .append("xhtml:body")
-            .attr( "xmlns", "http://www.w3.org/1999/xhtml" )
-            .html( jQuery.proxy( function( d, i )
+        // Update width, text and title when remove legend & two columns
+        legends.select( '.legendText' )
+                .attr( 'style', jQuery.proxy( function()
+        {
+            var widthValue = this.isTwoColumns ? this.legendSvgWidth / 2 - 50 : this.legendSvgWidth - 40;
+            return "width:" + widthValue;
+        }, this ) )
+                .attr( "title", jQuery.proxy( function( d, i )
         {
             var textWidth = getTextWidth( this.graphContainerId, d.label );
-            var legendWidth = this.legendSvgWidth - 31;
-            var titleLabel = (textWidth > legendWidth ? d.label : "");
-
-            return "<div class='legendText' title='"+titleLabel+"'>"+d.label+"</div>";
+            var legendWidth = this.isTwoColumns ? this.legendSvgWidth / 2 - 10 : this.legendSvgWidth;
+            return textWidth + 31 > legendWidth ? d.label : "";
+        }, this ) )
+                .html( jQuery.proxy( function( d, i )
+        {
+            return d.label;
         }, this ) );
 
         // Update color when remove legend
         legends.select( 'circle' )
-            .style( 'fill', jQuery.proxy( function( d, i )
+                .style( 'fill', jQuery.proxy( function( d, i )
         {
             if( d.disabled )
                 return "white";
             return d.color || this.getFreeColor( i )
         }, this ) )
-            .style( 'stroke', jQuery.proxy( function( d, i )
+                .style( 'stroke', jQuery.proxy( function( d, i )
         {
             return d.color || this.getFreeColor( i )
         }, this ) );
         legends.select( 'text.removeLegend' )
-            .style( 'fill', jQuery.proxy( function( d, i )
+                .style( 'fill', jQuery.proxy( function( d, i )
         {
             return d.color
         }, this ) );
@@ -789,15 +796,15 @@ var Woodpecker = Class.create( {
             ypos += 20;
             return 'translate(' + xpos + ',' + ypos + ')';
         }, this ) )
-            .classed( 'disabled', function( d )
-            {
-                return d.disabled
-            } );
+                .classed( 'disabled', function( d )
+        {
+            return d.disabled
+        } );
 
         // svg
         var newHeight = ypos > this.legendSvgHeight ? ypos + 20 : this.legendSvgHeight;
         d3.select( "#" + this.legendContainerId ).select( "svg" )
-            .attr( "viewBox", "0 0 " + this.legendSvgWidth + " " + newHeight );
+                .attr( "viewBox", "0 0 " + this.legendSvgWidth + " " + newHeight );
         // legend
         this.legendContainer.height( newHeight );
         this.legendContainer.draggable();
@@ -816,10 +823,10 @@ var Woodpecker = Class.create( {
 
         // If no more data to display, we display all the series
         if( !this.data.filter(
-            function( d )
-            {
-                return !d.disabled
-            } ).length )
+                function( d )
+                {
+                    return !d.disabled
+                } ).length )
         {
             this.data.forEach( function( d )
             {
@@ -889,7 +896,7 @@ var Woodpecker = Class.create( {
             {
                 return d[0]
             } ) )
-                .range( [0, this.plotSize.width] );
+                    .range( [0, this.plotSize.width] );
         else
             this.x.domain( this.xDomain ).range( [0, this.plotSize.width] );
 
@@ -898,7 +905,7 @@ var Woodpecker = Class.create( {
             {
                 return d[1]
             } ) )
-                .range( [this.plotSize.height, 0] );
+                    .range( [this.plotSize.height, 0] );
         else
             this.y.domain( this.yDomain ).range( [this.plotSize.height, 0] );
 
@@ -935,16 +942,16 @@ var Woodpecker = Class.create( {
         // Update lines
         var paths = lines.selectAll( 'path' );
         paths.attr( 'd', d3.svg.line()
-            .defined( function( d )
-            {
-                return !isNaN( d[1] );
-            } )
-            .interpolate( this.interpolation )
-            .x( jQuery.proxy( function( d )
+                .defined( function( d )
+        {
+            return !isNaN( d[1] );
+        } )
+                .interpolate( this.interpolation )
+                .x( jQuery.proxy( function( d )
         {
             return this.x( d[0] )
         }, this ) )
-            .y( jQuery.proxy( function( d )
+                .y( jQuery.proxy( function( d )
         {
             return this.y( d[1] )
         }, this ) ) );
@@ -960,11 +967,11 @@ var Woodpecker = Class.create( {
                 else
                     return 0;
             }, this ) )
-                .attr( 'cx', jQuery.proxy( function( d )
+                    .attr( 'cx', jQuery.proxy( function( d )
             {
                 return this.x( d[0] )
             }, this ) )
-                .attr( 'cy', jQuery.proxy( function( d )
+                    .attr( 'cy', jQuery.proxy( function( d )
             {
                 return this.y( d[1] )
             }, this ) );
@@ -981,18 +988,18 @@ var Woodpecker = Class.create( {
         {
             return d.disabled ? "white" : d.color;
         } )
-            .style( 'stroke', function( d, i )
-            {
-                return d.color
-            } );
+                .style( 'stroke', function( d, i )
+        {
+            return d.color
+        } );
         lines.style( 'fill', function( d, i )
         {
             return d.color
         } )
-            .style( 'stroke', function( d, i )
-            {
-                return d.color
-            } );
+                .style( 'stroke', function( d, i )
+        {
+            return d.color
+        } );
         var seriesLegendText = d3.selectAll( '.legend text.removeLegend' );
         seriesLegendText.style( 'fill', function( d, i )
         {
@@ -1026,8 +1033,8 @@ var Woodpecker = Class.create( {
     bindZoomsToGraph: function()
     {
         var wheelEventAllBrowsers = "onwheel" in document.createElement( "div" ) ? "wheel" : // Modern browsers support "wheel"
-            document.onmousewheel !== undefined ? "mousewheel" : // Webkit and IE support at least "mousewheel"
-                "DOMMouseScroll"; // let's assume that remaining browsers are older Firefox
+                document.onmousewheel !== undefined ? "mousewheel" : // Webkit and IE support at least "mousewheel"
+                        "DOMMouseScroll"; // let's assume that remaining browsers are older Firefox
 
         this.plot.on( "mouseup", jQuery.proxy( function()
         {
@@ -1176,7 +1183,7 @@ var Woodpecker = Class.create( {
         else
             items.push( { text: "Delete line(s)", icon: this.imgPath + "/trash2.svg", disable:true } );
 
-        var option = { width: 230, items: items};
+        var option = { width: 230, containerBodyId: "#pageWrapper", items: items};
 
         // Add a title to the menu
         var menuTitleDiv = $( '<div class="WPcontainerTitle WPmenuTitleClose"><div class="WPcontainerTitleText">Menu </div><div class="WPcontainerTitleClose"><img src="' + this.imgPath + '/close.png"></div></div>' );
@@ -1396,7 +1403,7 @@ var Woodpecker = Class.create( {
      * The div "WPdivToExportGraph" is needed because we have to put the svg in one parent div to display only the content on this parent.
      *  Without this div, the export add the iconsMenu which is not what we want and which doesn't work !
      * The div "WPdivToCloneToExportGraph" is needed because we have to clone the svg before the export to remove some elements (".removeLegend") and change the style
-     * @param value
+     * @param value : pdf, svg or png
      */
     onClickExportWithParameters: function( value )
     {
@@ -1404,83 +1411,130 @@ var Woodpecker = Class.create( {
         var value = this[1];
 
         $( "#WPdivToCloneToExportGraph" ).show();
-
         $( "#WPdivToCloneToExportGraph" ).empty();
-        $( "#WPdivToCloneToExportGraph" ).append( $( "#WPdivToExportGraph svg" ).clone() );
-        $( "#WPdivToCloneToExportGraph svg g.wrap" ).append( $( "#WPdivToExportGraphLegend svg g.legends" ).clone() );
-        $( "#WPdivToCloneToExportGraph svg g.legends" ).attr( "transform", "translate(0," + ($( "#WPdivToExportGraph" ).height() - 20) + ")" );
-        $( "#WPdivToCloneToExportGraph .removeLegend" ).remove();
 
-        var fontSize = getStyleSheetPropertyValue( "#WPgraphSvg text, #WPgraphLegendSvg text, #divToGetCss", "fontSize" );
-        var fontWeight = getStyleSheetPropertyValue( "#WPgraphSvg text, #WPgraphLegendSvg text, #divToGetCss", "fontWeight" );
+        context.exportGraph();
+        context.exportLegend();
+        if( context.imagesToInsertInExport )
+            context.exportFooter();
+
+        context.submitDownloadForm( value );
+        $( "#WPdivToCloneToExportGraph" ).empty();
+    },
+
+    exportGraph: function()
+    {
+        $( "#WPdivToCloneToExportGraph" ).append( $( "#WPdivToExportGraph svg" ).clone() );
+        $( "#WPdivToCloneToExportGraph .gZooms" ).remove();
+
+        var fontSize = getStyleSheetPropertyValue( "#WPgraphSvg text, #divToGetCss", "fontSize" );
+        var fontWeight = getStyleSheetPropertyValue( "#WPgraphSvg text, #divToGetCss", "fontWeight" );
         if( null == fontSize )
             fontSize = "15px";
         if( null == fontWeight )
             fontWeight = "bold";
 
         // We have to attribute style to graph to export because of the css is not managed
-        d3.select( "#WPdivToCloneToExportGraph svg" ).selectAll( "g line" ).attr( "style", "shape-rendering: crispedges; stroke:#000000; stroke-opacity: 0.25" );
-        d3.select( "#WPdivToCloneToExportGraph svg" ).selectAll( "path.domain" ).attr( "style", "shape-rendering: crispedges; stroke:#000000; stroke-opacity: 0.75" );
-        d3.select( "#WPdivToCloneToExportGraph svg" ).selectAll( "line.zero" ).attr( "style", "shape-rendering: crispedges; stroke:#000000; stroke-opacity: 0.75" );
-        //d3.select( "#WPdivToCloneToExportGraph svg" ).selectAll( ".lines path" ).attr( "style", "fill:none; stroke-linecap: round; stroke-width: 5px" );
-        d3.select( "#WPdivToCloneToExportGraph svg" ).selectAll( ".lines path" ).attr( "style", "fill:none; stroke-linecap: round;" );
-        d3.select( "#WPdivToCloneToExportGraph svg" ).selectAll( "text" ).attr( "style", "font-size: " + fontSize + "; font-weight: " + fontWeight + "; font-family: 'Ubuntu',Arial,sans-serif" );
-        d3.select( "#WPdivToCloneToExportGraph svg" ).selectAll( "g.y.axis text" ).attr( "style", "text-anchor: end; cursor: ns-resize; stroke: none; font-size: " + fontSize + "; font-weight: " + fontWeight + "; font-family: 'Ubuntu',Arial,sans-serif" );
-        d3.select( "#WPdivToCloneToExportGraph svg" ).selectAll( "g.x.axis text" ).attr( "style", "text-anchor: middle; cursor: ns-resize; stroke: none; font-size: " + fontSize + "; font-weight: " + fontWeight + "; font-family: 'Ubuntu',Arial,sans-serif" );
-        d3.select( "#WPdivToCloneToExportGraph svg" ).select( "g.y.axis text.axislabel" ).attr( 'x', -context.y.range()[0] / 4 - 45 );
+        d3.select( "#WPdivToCloneToExportGraph" ).selectAll( "line" ).attr( "style", "shape-rendering: crispedges; stroke:#000000; stroke-opacity: 0.25" );
+        d3.select( "#WPdivToCloneToExportGraph" ).selectAll( "path.domain" ).attr( "style", "shape-rendering: crispedges; stroke:#000000; stroke-opacity: 1" );
+        d3.select( "#WPdivToCloneToExportGraph" ).selectAll( "line.zero" ).attr( "style", "shape-rendering: crispedges; stroke:#000000; stroke-opacity: 0.75" );
+        d3.select( "#WPdivToCloneToExportGraph" ).selectAll( ".lines path" ).attr( "style", "fill:none; stroke-linecap: round; stroke-width: 3px" );
+        d3.select( "#WPdivToCloneToExportGraph" ).selectAll( ".gGraph text" ).attr( "style", "font-size: " + fontSize + "; font-weight: " + fontWeight + "; font-family: sans-serif" );
+        d3.select( "#WPdivToCloneToExportGraph" ).selectAll( ".y.axis g text" ).attr( "style", "text-anchor: end; cursor: ns-resize; stroke: none; font-size: " + fontSize + "; font-weight: " + fontWeight + "; font-family: sans-serif" );
+        d3.select( "#WPdivToCloneToExportGraph" ).selectAll( ".x.axis g text" ).attr( "style", "text-anchor: middle; cursor: ns-resize; stroke: none; font-size: " + fontSize + "; font-weight: " + fontWeight + "; font-family: sans-serif" );
+//        d3.select( "#WPdivToCloneToExportGraph svg" ).select( "g.y.axis text.axislabel" ).attr( 'x', -this.y.range()[0] / 2 - 45 );
 
         d3.select( "#WPdivToCloneToExportGraph svg" )
-            .attr( "width", $( "#WPdivToExportGraph" ).width() )
-            .attr( "height", $( "#WPdivToExportGraph" ).height() + $( "#WPdivToExportGraphLegend" ).height() );
+                .attr( "width", $( "#WPdivToExportGraph" ).width() )
+                .attr( "height", $( "#WPdivToExportGraph" ).height() + $( "#WPdivToExportGraphLegend" ).height() );
+    },
 
-        // Add logo if necessary
-        if( context.imagesToInsertInExport )
+    /**
+     * This method clones the legends, remove the trash image, refont the text and recreate the svg text instead of foreignObject
+     * because foreignObject is not working with the serialisation
+     */
+    exportLegend: function()
+    {
+        $( "#WPdivToCloneToExportGraph .wrap" ).append( $( "#WPdivToExportGraphLegend .legends" ).clone() );
+        $( "#WPdivToCloneToExportGraph .legends" ).attr( "transform", "translate(0," + ($( "#WPdivToExportGraph" ).height() - 20) + ")" );
+        $( "#WPdivToCloneToExportGraph .removeLegend" ).remove();
+        $( "#WPdivToCloneToExportGraph foreignObject" ).remove();
+
+        // Recreate the legends with real svg text instead of foreignObject
+        var gLegends = d3.select( "#WPdivToCloneToExportGraph .legends" ).selectAll( '.legend' ).data( this.data );
+        gLegends.attr( "transform", function( d, i )
         {
-            var footerRectWidth = 0;
-            var footerRectHeight = 0;
-            jQuery.each( context.imagesToInsertInExport.images, function( i, d )
-            {
-                footerRectWidth += d.width;
-                footerRectHeight = Math.max( footerRectHeight, d.height );
-            } );
-            footerRectWidth += 20 * (context.imagesToInsertInExport.images.length - 1);
+            return 'translate(31,' + (i * 20) + ')';
+        } )
+                .append( 'text' )
+                .attr( 'text-anchor', 'start' )
+                .attr( 'dy', '.32em' )
+                .attr( 'dx', '8' )
+                .text( jQuery.proxy( function( d, i )
+        {
+            return d.label;
+        }, this ) );
 
-            var footerTop = context.isTwoColumns ? context.plotSize.height + $( "#WPdivToExportGraphLegend" ).height() + 50 : context.plotSize.height + $( "#WPdivToExportGraphLegend" ).height() - 30;
-            var footerExport = d3.select( "#WPdivToCloneToExportGraph svg" ).append( "g" )
-                .attr( 'transform', 'translate(' + (context.plotSize.width - footerRectWidth + 50) + ',' + footerTop + ')' );
+        // Refont the texts
+        var fontSize = getStyleSheetPropertyValue( ".legendText, #divToGetCss", "fontSize" );
+        var fontWeight = getStyleSheetPropertyValue( ".legendText, #divToGetCss", "fontWeight" );
+        if( null == fontSize )
+            fontSize = "15px";
+        if( null == fontWeight )
+            fontWeight = "bold";
+        d3.select( "#WPdivToCloneToExportGraph" ).selectAll( ".legends text" ).attr( "style", "font-size: " + fontSize + "; font-weight: " + fontWeight + "; font-family: sans-serif" );
+    },
 
-            if( context.imagesToInsertInExport.displayBackground )
-            {
-                footerExport.append( "rect" ).attr( 'class', 'exportFooter' )
+    /** This method add in a footer the images contained in the parameter "imagesToInsertInExport"
+     *      - imagesToInsertInExport.images : array of images to insert
+     *      - imagesToInsertInExport.displayBackground : boolean to indicate if we have to add the class "exportFooter"
+     *      (to manage the transparent background by example)
+     */
+    exportFooter: function()
+    {
+        var footerRectWidth = 0;
+        var footerRectHeight = 0;
+        jQuery.each( this.imagesToInsertInExport.images, function( i, d )
+        {
+            footerRectWidth += d.width;
+            footerRectHeight = Math.max( footerRectHeight, d.height );
+        } );
+        footerRectWidth += 20 * (this.imagesToInsertInExport.images.length - 1);
+
+//        var footerTop = this.isTwoColumns ? this.plotSize.height + $( "#WPdivToExportGraphLegend" ).height() + 50 : this.plotSize.height + $( "#WPdivToExportGraphLegend" ).height() - 30;
+        var footerTop = this.plotSize.height + 50;
+        var footerLeft = this.plotSize.width - footerRectWidth + this.axisTextDimension.yAxisWidth + 10;
+        var footerExport = d3.select( "#WPdivToCloneToExportGraph svg" ).append( "g" )
+                .attr( 'class', 'gFooter' )
+                .attr( 'transform', 'translate(' + footerLeft + ',' + footerTop + ')' );
+
+        if( this.imagesToInsertInExport.displayBackground )
+        {
+            footerExport.append( "rect" ).attr( 'class', 'exportFooter' )
                     .attr( "width", footerRectWidth + "px" )
                     .attr( "height", footerRectHeight + "px" );
-            }
-            var footerExportImages = footerExport.selectAll( "image" ).data( context.imagesToInsertInExport.images );
-            footerExportImages.enter().append( "svg:image" ).attr( "xlink:href", function( d )
-            {
-                return "data:image/jpeg;base64," + d.encodedImage
-            } )
-                .attr( "width", function( d )
-                {
-                    return d.width;
-                } )
-                .attr( "height", function( d )
-                {
-                    return d.height;
-                } )
-                .attr( "x", function( d, i )
-                {
-                    return 0 < i ? context.imagesToInsertInExport.images[i - 1].width + 20 : 0;
-                } )
-                .attr( "y", function( d )
-                {
-                    return (footerRectHeight - d.height) / 2;
-                } );
         }
-
-        context.submitDownloadForm( value );
-
-        $( "#WPdivToCloneToExportGraph" ).empty();
+        var footerExportImages = footerExport.selectAll( "image" ).data( this.imagesToInsertInExport.images );
+        footerExportImages.enter().append( "svg:image" ).attr( "xlink:href", function( d )
+        {
+            return "data:image/jpeg;base64," + d.encodedImage
+        } )
+                .attr( "width", function( d )
+        {
+            return d.width;
+        } )
+                .attr( "height", function( d )
+        {
+            return d.height;
+        } )
+                .attr( "x", jQuery.proxy( function( d, i )
+        {
+            return 0 < i ? this.imagesToInsertInExport.images[i - 1].width + 20 : 0;
+        }, this ) )
+                .attr( "y", function( d )
+        {
+            return (footerRectHeight - d.height) / 2;
+        } );
     },
 
     /*
@@ -1543,8 +1597,8 @@ var Woodpecker = Class.create( {
         // Axis
         this.divAxis = this.createSimpleBox( "WPaxis", "Axis" );
         this.divAxis.append( '<div class="WPcontainerContent"><div class="WPaxisTitle">' + this.xAxisLabelText + '</div>Minimum : &nbsp;<input id="xMin" size="9"/><BR/>Maximum : <input id="xMax" size="9"/><BR/>' +
-            '<div class="WPaxisTitle">' + this.yAxisLabelText + '</div>Minimum : &nbsp;<input id="yMin" size="9"/><BR/>Maximum : <input id="yMax" size="9"/><BR/>' +
-            '<div id="axisButtonUpdate">Update Axis</div></div>' );
+                '<div class="WPaxisTitle">' + this.yAxisLabelText + '</div>Minimum : &nbsp;<input id="yMin" size="9"/><BR/>Maximum : <input id="yMax" size="9"/><BR/>' +
+                '<div id="axisButtonUpdate">Update Axis</div></div>' );
         $( divContainer ).append( this.divAxis );
 
         // Export
@@ -1595,12 +1649,12 @@ var Woodpecker = Class.create( {
             return [-1];
         }
         var t = (ignoreCase) ? this.toLowerCase() : this,
-            s = (ignoreCase) ? string.toString().toLowerCase() : string.toString(),
-            i = this.indexOf( s ),
-            len = this.length,
-            n,
-            indx = 0,
-            result = [];
+                s = (ignoreCase) ? string.toString().toLowerCase() : string.toString(),
+                i = this.indexOf( s ),
+                len = this.length,
+                n,
+                indx = 0,
+                result = [];
         if( i === -1 || 0 === len )
         {
             return [i];
@@ -1631,8 +1685,8 @@ function getTextWidth( wrapperId, text )
     var timeForId = new Date().getTime();
     var divTextToGetWidthId = "WPDivToGetWidth_" + timeForId;
     $( "#" + divTextToGetWidthId ).remove();
-    var fontSize = getStyleSheetPropertyValue( "#WPgraphSvg text, #WPgraphLegendSvg text, #divToGetCss", "fontSize" );
-    var fontWeight = getStyleSheetPropertyValue( "#WPgraphSvg text, #WPgraphLegendSvg text, #divToGetCss", "fontWeight" );
+    var fontSize = getStyleSheetPropertyValue( "#WPgraphSvg text, #divToGetCss", "fontSize" );
+    var fontWeight = getStyleSheetPropertyValue( "#WPgraphSvg text, #divToGetCss", "fontWeight" );
     if( null == fontSize )
         fontSize = "15px";
     if( null == fontWeight )
@@ -1650,7 +1704,7 @@ function getStyleSheetPropertyValue( selectorText, propertyName )
     for( var s = document.styleSheets.length - 1; s >= 0; s-- )
     {
         var cssRules = document.styleSheets[s].cssRules ||
-            document.styleSheets[s].rules || []; // IE support
+                document.styleSheets[s].rules || []; // IE support
         for( var c = 0; c < cssRules.length; c++ )
         {
             if( cssRules[c].selectorText === selectorText )

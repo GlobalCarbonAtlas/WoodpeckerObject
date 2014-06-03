@@ -27,7 +27,8 @@
                 this.disable = obj.disable;
                 this.className = "b-m-idisable";
             }
-            $( this ).width( obj.width ).click( returnfalse ).mousedown( returnfalse ).appendTo( $( "body" ) );
+            var container = option.containerBodyId ? option.containerBodyId : "body";
+            $( this ).width( obj.width ).click( returnfalse ).mousedown( returnfalse ).appendTo( $( container ) );
             menuTitleDiv.appendTo( $( this ) );
             obj = null;
             return this;
@@ -137,7 +138,8 @@
         //show menu group at specified position
         var showMenuGroup = function( pos, width )
         {
-            var bwidth = $( "body" ).width();
+            var container = option.containerBodyId ? option.containerBodyId : "body";
+            var bwidth = $( container ).width();
             var bheight = document.documentElement.clientHeight;
             var mwidth = $( this ).outerWidth();
             var mheight = $( this ).outerHeight();
