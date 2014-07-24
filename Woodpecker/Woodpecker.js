@@ -668,6 +668,8 @@ var Woodpecker = Class.create( {
         if( this.displayIconsMenu )
             this.createOrUpdateIconsMenu();
         this.selectedLineIndex = 0;
+        this.xDomain = false;
+        this.yDomain = false;
     },
 
     onClickPoint: function()
